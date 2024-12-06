@@ -1,0 +1,33 @@
+# Build output directories
+x64/
+x86/
+bin/
+obj/
+
+# User-specific and temporary files
+*.user
+*.suo
+*.log
+*.tlog
+*.cache
+*.VC.db
+*.opendb
+
+# Visual Studio temporary files
+.vs/
+*.pdb
+*.idb
+*.ipch
+*.ilk
+*.tmp
+
+# System files
+desktop.ini
+
+# Exclude executables
+*.exe
+*.dll
+*.lib
+
+# Optional: VS Code settings
+.vscode/
