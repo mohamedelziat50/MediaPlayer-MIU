@@ -4,9 +4,14 @@
 #include <wx/tglbtn.h>
 
 
-MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title, wxDefaultPosition, wxSize(800, 600)) {
+// Main frame -> scene
+
+MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title, wxDefaultPosition, wxSize(800, 600)) 
+{
+    // Root pane - Stack pane anchor pane
     wxPanel* panel = new wxPanel(this);
 
+    // Video
     wxMediaCtrl* mediaCtrl = new wxMediaCtrl(panel, wxID_ANY, wxEmptyString, wxPoint(125, 100), wxSize(500, 300));
 
 
@@ -34,8 +39,8 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(nullptr, wxID_ANY, title, 
 
     panel->SetSizerAndFit(sizer);
 
-
-    if (!mediaCtrl->Load(wxT("E:\\Clips\\Desktop\\Desktop\\Desktop 2024.12.03 - 20.30.21.01.mp4"))) {
+    if (!mediaCtrl->Load(wxT("E:\\Clips\\Desktop\\Desktop\\Desktop 2024.12.03 - 20.30.21.01.mp4"))
+    {
         wxMessageBox("Failed to load video!", "Error", wxICON_ERROR);
         return;
     }
