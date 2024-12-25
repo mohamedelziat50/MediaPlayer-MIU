@@ -1,0 +1,41 @@
+# Ignore build output directories
+bin/*
+bin/Debug/*
+bin/Release/*
+x64/
+x86/
+obj/
+
+# Except for specific files, like your DLL
+!bin/Debug/AxInterop.WMPLib.1.0.dll
+!bin/Release/AxInterop.WMPLib.1.0.dll
+
+# User-specific and temporary files
+*.aps
+*.user
+*.suo
+*.log
+*.tlog
+*.cache
+*.VC.db
+*.opendb
+
+# Visual Studio temporary files
+.vs/
+*.pdb
+*.idb
+*.ipch
+*.ilk
+*.tmp
+
+# System files
+desktop.ini
+
+# Exclude executables
+*.exe
+*.dll
+*.lib
+
+# Optional: VS Code settings
+.vscode/
+
