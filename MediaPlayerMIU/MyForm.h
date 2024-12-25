@@ -35,6 +35,7 @@ namespace MediaPlayerMIU {
 			}
 		}
 	private: AxWMPLib::AxWindowsMediaPlayer^ player;
+	private: System::Windows::Forms::GroupBox^ groupBox1;
 	protected:
 
 	protected:
@@ -56,6 +57,7 @@ namespace MediaPlayerMIU {
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->player = (gcnew AxWMPLib::AxWindowsMediaPlayer());
+			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->player))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -64,18 +66,32 @@ namespace MediaPlayerMIU {
 			this->player->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->player->Enabled = true;
 			this->player->Location = System::Drawing::Point(0, 0);
+			this->player->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
 			this->player->Name = L"player";
 			this->player->OcxState = (cli::safe_cast<System::Windows::Forms::AxHost::State^>(resources->GetObject(L"player.OcxState")));
-			this->player->Size = System::Drawing::Size(971, 544);
+			this->player->Size = System::Drawing::Size(1295, 670);
 			this->player->TabIndex = 0;
+			// 
+			// groupBox1
+			// 
+			this->groupBox1->BackColor = System::Drawing::Color::Blue;
+			this->groupBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->groupBox1->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->groupBox1->Location = System::Drawing::Point(277, 351);
+			this->groupBox1->Name = L"groupBox1";
+			this->groupBox1->Size = System::Drawing::Size(583, 223);
+			this->groupBox1->TabIndex = 1;
+			this->groupBox1->TabStop = false;
+			this->groupBox1->Text = L"groupBox1";
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(971, 544);
+			this->ClientSize = System::Drawing::Size(1295, 670);
+			this->Controls->Add(this->groupBox1);
 			this->Controls->Add(this->player);
-			this->Margin = System::Windows::Forms::Padding(2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
