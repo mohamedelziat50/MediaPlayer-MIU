@@ -9,11 +9,15 @@ namespace MediaPlayerMIU {
 	using namespace System::Data;
 	using namespace System::Drawing;
 
+
 	/// <summary>
 	/// Summary for MyForm
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
+
+	private: bool isPlaying = false;  // Boolean to track the state (play/pause)
+
 	public:
 		MyForm(void)
 		{
@@ -24,6 +28,10 @@ namespace MediaPlayerMIU {
 
 			// This makes the WMP's built-in functionality hidden
 			this->player->uiMode = L"none";  // This hides all UI elements like play/pause buttons
+
+			// Initially, the Play button is visible and enabled, while the Pause button is hidden
+			play_button->Visible = true;
+			pause_button->Visible = false;
 		}
 
 	protected:
@@ -89,13 +97,13 @@ namespace MediaPlayerMIU {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->player = (gcnew AxWMPLib::AxWindowsMediaPlayer());
 			this->function_panel = (gcnew System::Windows::Forms::Panel());
+			this->video_name = (gcnew System::Windows::Forms::Label());
+			this->skipForward_button = (gcnew System::Windows::Forms::Button());
+			this->previous_button = (gcnew System::Windows::Forms::Button());
 			this->skipBackward_button = (gcnew System::Windows::Forms::Button());
 			this->next_button = (gcnew System::Windows::Forms::Button());
 			this->pause_button = (gcnew System::Windows::Forms::Button());
 			this->play_button = (gcnew System::Windows::Forms::Button());
-			this->previous_button = (gcnew System::Windows::Forms::Button());
-			this->skipForward_button = (gcnew System::Windows::Forms::Button());
-			this->video_name = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->player))->BeginInit();
 			this->function_panel->SuspendLayout();
 			this->SuspendLayout();
@@ -127,84 +135,6 @@ namespace MediaPlayerMIU {
 			this->function_panel->TabIndex = 2;
 			this->function_panel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::function_panel_Paint);
 			// 
-			// skipBackward_button
-			// 
-			this->skipBackward_button->FlatAppearance->BorderSize = 0;
-			this->skipBackward_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->skipBackward_button->ForeColor = System::Drawing::Color::White;
-			this->skipBackward_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"skipBackward_button.Image")));
-			this->skipBackward_button->Location = System::Drawing::Point(697, 24);
-			this->skipBackward_button->Name = L"skipBackward_button";
-			this->skipBackward_button->Size = System::Drawing::Size(45, 52);
-			this->skipBackward_button->TabIndex = 4;
-			this->skipBackward_button->UseVisualStyleBackColor = true;
-			this->skipBackward_button->Click += gcnew System::EventHandler(this, &MyForm::skipBackward_button_Click);
-			// 
-			// next_button
-			// 
-			this->next_button->FlatAppearance->BorderSize = 0;
-			this->next_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->next_button->ForeColor = System::Drawing::Color::White;
-			this->next_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"next_button.Image")));
-			this->next_button->Location = System::Drawing::Point(536, 28);
-			this->next_button->Name = L"next_button";
-			this->next_button->Size = System::Drawing::Size(36, 38);
-			this->next_button->TabIndex = 2;
-			this->next_button->UseVisualStyleBackColor = true;
-			this->next_button->Click += gcnew System::EventHandler(this, &MyForm::next_button_Click);
-			// 
-			// pause_button
-			// 
-			this->pause_button->FlatAppearance->BorderSize = 0;
-			this->pause_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->pause_button->ForeColor = System::Drawing::Color::White;
-			this->pause_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pause_button.Image")));
-			this->pause_button->Location = System::Drawing::Point(430, 24);
-			this->pause_button->Name = L"pause_button";
-			this->pause_button->Size = System::Drawing::Size(47, 47);
-			this->pause_button->TabIndex = 1;
-			this->pause_button->UseVisualStyleBackColor = true;
-			this->pause_button->Click += gcnew System::EventHandler(this, &MyForm::pause_button_Click);
-			// 
-			// play_button
-			// 
-			this->play_button->FlatAppearance->BorderSize = 0;
-			this->play_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->play_button->ForeColor = System::Drawing::Color::White;
-			this->play_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play_button.Image")));
-			this->play_button->Location = System::Drawing::Point(483, 24);
-			this->play_button->Name = L"play_button";
-			this->play_button->Size = System::Drawing::Size(47, 47);
-			this->play_button->TabIndex = 0;
-			this->play_button->UseVisualStyleBackColor = true;
-			this->play_button->Click += gcnew System::EventHandler(this, &MyForm::play_button_Click);
-			// 
-			// previous_button
-			// 
-			this->previous_button->FlatAppearance->BorderSize = 0;
-			this->previous_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->previous_button->ForeColor = System::Drawing::Color::White;
-			this->previous_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"previous_button.Image")));
-			this->previous_button->Location = System::Drawing::Point(379, 28);
-			this->previous_button->Name = L"previous_button";
-			this->previous_button->Size = System::Drawing::Size(36, 38);
-			this->previous_button->TabIndex = 7;
-			this->previous_button->UseVisualStyleBackColor = true;
-			this->previous_button->Click += gcnew System::EventHandler(this, &MyForm::previous_button_Click);
-			// 
-			// skipForward_button
-			// 
-			this->skipForward_button->FlatAppearance->BorderSize = 0;
-			this->skipForward_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->skipForward_button->ForeColor = System::Drawing::Color::White;
-			this->skipForward_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"skipForward_button.Image")));
-			this->skipForward_button->Location = System::Drawing::Point(748, 24);
-			this->skipForward_button->Name = L"skipForward_button";
-			this->skipForward_button->Size = System::Drawing::Size(45, 52);
-			this->skipForward_button->TabIndex = 8;
-			this->skipForward_button->UseVisualStyleBackColor = true;
-			this->skipForward_button->Click += gcnew System::EventHandler(this, &MyForm::skipForward_button_Click);
-			// 
 			// video_name
 			// 
 			this->video_name->AutoSize = true;
@@ -217,6 +147,84 @@ namespace MediaPlayerMIU {
 			this->video_name->TabIndex = 9;
 			this->video_name->Text = L"video_name";
 			this->video_name->Click += gcnew System::EventHandler(this, &MyForm::video_name_Click);
+			// 
+			// skipForward_button
+			// 
+			this->skipForward_button->FlatAppearance->BorderSize = 0;
+			this->skipForward_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->skipForward_button->ForeColor = System::Drawing::Color::White;
+			this->skipForward_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"skipForward_button.Image")));
+			this->skipForward_button->Location = System::Drawing::Point(751, 32);
+			this->skipForward_button->Name = L"skipForward_button";
+			this->skipForward_button->Size = System::Drawing::Size(38, 44);
+			this->skipForward_button->TabIndex = 8;
+			this->skipForward_button->UseVisualStyleBackColor = true;
+			this->skipForward_button->Click += gcnew System::EventHandler(this, &MyForm::skipForward_button_Click);
+			// 
+			// previous_button
+			// 
+			this->previous_button->FlatAppearance->BorderSize = 0;
+			this->previous_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->previous_button->ForeColor = System::Drawing::Color::White;
+			this->previous_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"previous_button.Image")));
+			this->previous_button->Location = System::Drawing::Point(394, 27);
+			this->previous_button->Name = L"previous_button";
+			this->previous_button->Size = System::Drawing::Size(36, 38);
+			this->previous_button->TabIndex = 7;
+			this->previous_button->UseVisualStyleBackColor = true;
+			this->previous_button->Click += gcnew System::EventHandler(this, &MyForm::previous_button_Click);
+			// 
+			// skipBackward_button
+			// 
+			this->skipBackward_button->FlatAppearance->BorderSize = 0;
+			this->skipBackward_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->skipBackward_button->ForeColor = System::Drawing::Color::White;
+			this->skipBackward_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"skipBackward_button.Image")));
+			this->skipBackward_button->Location = System::Drawing::Point(700, 32);
+			this->skipBackward_button->Name = L"skipBackward_button";
+			this->skipBackward_button->Size = System::Drawing::Size(38, 44);
+			this->skipBackward_button->TabIndex = 4;
+			this->skipBackward_button->UseVisualStyleBackColor = true;
+			this->skipBackward_button->Click += gcnew System::EventHandler(this, &MyForm::skipBackward_button_Click);
+			// 
+			// next_button
+			// 
+			this->next_button->FlatAppearance->BorderSize = 0;
+			this->next_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->next_button->ForeColor = System::Drawing::Color::White;
+			this->next_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"next_button.Image")));
+			this->next_button->Location = System::Drawing::Point(534, 27);
+			this->next_button->Name = L"next_button";
+			this->next_button->Size = System::Drawing::Size(36, 38);
+			this->next_button->TabIndex = 2;
+			this->next_button->UseVisualStyleBackColor = true;
+			this->next_button->Click += gcnew System::EventHandler(this, &MyForm::next_button_Click);
+			// 
+			// pause_button
+			// 
+			this->pause_button->FlatAppearance->BorderSize = 0;
+			this->pause_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->pause_button->ForeColor = System::Drawing::Color::White;
+			this->pause_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pause_button.Image")));
+			this->pause_button->Location = System::Drawing::Point(456, 23);
+			this->pause_button->Name = L"pause_button";
+			this->pause_button->Size = System::Drawing::Size(47, 47);
+			this->pause_button->TabIndex = 1;
+			this->pause_button->UseVisualStyleBackColor = true;
+			this->pause_button->Click += gcnew System::EventHandler(this, &MyForm::pause_button_Click);
+			// 
+			// play_button
+			// 
+			this->play_button->FlatAppearance->BorderSize = 0;
+			this->play_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->play_button->ForeColor = System::Drawing::Color::White;
+			this->play_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play_button.Image")));
+			this->play_button->Location = System::Drawing::Point(456, 23);
+			this->play_button->Name = L"play_button";
+			this->play_button->Size = System::Drawing::Size(47, 47);
+			this->play_button->TabIndex = 0;
+			this->play_button->UseVisualStyleBackColor = true;
+			this->play_button->Click += gcnew System::EventHandler(this, &MyForm::play_button_Click);
 			// 
 			// MyForm
 			// 
@@ -244,9 +252,23 @@ namespace MediaPlayerMIU {
 	}
 	private: System::Void next_button_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void play_button_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void play_button_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		// Toggle visibility: Show Pause button, hide Play button
+		play_button->Visible = false;
+		pause_button->Visible = true;
+
+		// Set the isPlaying state to true
+		isPlaying = true;
 	}
-	private: System::Void pause_button_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void pause_button_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		// Toggle visibility: Show Play button, hide Pause button
+		pause_button->Visible = false;
+		play_button->Visible = true;
+
+		// Set the isPlaying state to false
+		isPlaying = false;
 	}
 	private: System::Void function_panel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
