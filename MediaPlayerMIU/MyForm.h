@@ -34,6 +34,12 @@ namespace MediaPlayerMIU {
 				delete components;
 			}
 		}
+	private: AxWMPLib::AxWindowsMediaPlayer^ player;
+	protected:
+
+	protected:
+
+	protected:
 
 	private:
 		/// <summary>
@@ -48,16 +54,32 @@ namespace MediaPlayerMIU {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
+			this->player = (gcnew AxWMPLib::AxWindowsMediaPlayer());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->player))->BeginInit();
 			this->SuspendLayout();
+			// 
+			// player
+			// 
+			this->player->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->player->Enabled = true;
+			this->player->Location = System::Drawing::Point(0, 0);
+			this->player->Name = L"player";
+			this->player->OcxState = (cli::safe_cast<System::Windows::Forms::AxHost::State^>(resources->GetObject(L"player.OcxState")));
+			this->player->Size = System::Drawing::Size(971, 544);
+			this->player->TabIndex = 0;
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(707, 495);
+			this->ClientSize = System::Drawing::Size(971, 544);
+			this->Controls->Add(this->player);
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->player))->EndInit();
 			this->ResumeLayout(false);
 
 		}
