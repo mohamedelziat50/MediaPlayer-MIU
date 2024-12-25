@@ -36,6 +36,7 @@ namespace MediaPlayerMIU {
 		}
 	private: AxWMPLib::AxWindowsMediaPlayer^ player;
 	private: System::Windows::Forms::GroupBox^ groupBox1;
+	private: System::Windows::Forms::Button^ button1;
 	protected:
 
 	protected:
@@ -58,7 +59,9 @@ namespace MediaPlayerMIU {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->player = (gcnew AxWMPLib::AxWindowsMediaPlayer());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->player))->BeginInit();
+			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// player
@@ -66,7 +69,7 @@ namespace MediaPlayerMIU {
 			this->player->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->player->Enabled = true;
 			this->player->Location = System::Drawing::Point(0, 0);
-			this->player->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->player->Margin = System::Windows::Forms::Padding(4);
 			this->player->Name = L"player";
 			this->player->OcxState = (cli::safe_cast<System::Windows::Forms::AxHost::State^>(resources->GetObject(L"player.OcxState")));
 			this->player->Size = System::Drawing::Size(1295, 670);
@@ -76,6 +79,7 @@ namespace MediaPlayerMIU {
 			// 
 			this->groupBox1->BackColor = System::Drawing::Color::Blue;
 			this->groupBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->groupBox1->Controls->Add(this->button1);
 			this->groupBox1->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
 			this->groupBox1->Location = System::Drawing::Point(277, 351);
 			this->groupBox1->Name = L"groupBox1";
@@ -83,6 +87,15 @@ namespace MediaPlayerMIU {
 			this->groupBox1->TabIndex = 1;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"groupBox1";
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(299, 38);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(94, 98);
+			this->button1->TabIndex = 2;
+			this->button1->Text = L"next";
+			this->button1->UseVisualStyleBackColor = true;
 			// 
 			// MyForm
 			// 
@@ -96,6 +109,7 @@ namespace MediaPlayerMIU {
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->player))->EndInit();
+			this->groupBox1->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
