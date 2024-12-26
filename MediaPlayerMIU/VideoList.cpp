@@ -102,7 +102,7 @@ String^ VideoList::prevVideo()
 String^ VideoList::nextVideo()
 {
     // If there's no current video return
-    if (isCurrentEmpty() || isEmpty())
+    if (isCurrentEmpty() || isEmpty()||current->next==nullptr)
         return nullptr;
 
     current = current->next;
