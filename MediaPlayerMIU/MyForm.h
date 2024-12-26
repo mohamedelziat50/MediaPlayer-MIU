@@ -874,6 +874,9 @@ private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e) {
 			soundBar->Value = player->settings->volume;
 			soundLabel->Text = player->settings->volume.ToString();
 		}
+		else if (e->KeyCode == Keys::Delete) {
+			deleteButton_Click(sender, e);
+		}
 		
 	}
 	
