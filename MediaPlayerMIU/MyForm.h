@@ -761,10 +761,10 @@ namespace MediaPlayerMIU
 	{
 		// Get the next video path
 		
-
 		if (isLooped) {
 			player->Ctlcontrols->currentPosition = 0;
 		}
+		
 		else if (videoList->nextVideo() != nullptr)
 		{
 			// Update the ListBox's selected index to reflect the new current node
@@ -819,13 +819,14 @@ namespace MediaPlayerMIU
 		// Ensure the VideoList is not empty
 		if (!videoList->isEmpty())
 		{
-			// Switch to the next video in the list
 			
+			//check if the video is looped or not
 			if (isLooped) {
+				//reset the current position of the video to 0 so that it start from the start
 				player->Ctlcontrols->currentPosition = 0;
 			}
 			
-			
+			// Switch to the prev video in the list
 			else if (videoList->prevVideo() != nullptr)
 			{
 				// Update the ListBox's selected index to reflect the new current node
