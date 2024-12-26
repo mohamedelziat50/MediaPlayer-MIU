@@ -178,7 +178,7 @@ namespace MediaPlayerMIU
 			// progressBar1
 			// 
 			this->progressBar1->Location = System::Drawing::Point(64, 19);
-			this->progressBar1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->progressBar1->Margin = System::Windows::Forms::Padding(2);
 			this->progressBar1->Name = L"progressBar1";
 			this->progressBar1->Size = System::Drawing::Size(1334, 6);
 			this->progressBar1->TabIndex = 12;
@@ -312,7 +312,7 @@ namespace MediaPlayerMIU
 			// 
 			this->track_list->BackColor = System::Drawing::SystemColors::InactiveCaption;
 			this->track_list->FormattingEnabled = true;
-			this->track_list->Location = System::Drawing::Point(1241, 30);
+			this->track_list->Location = System::Drawing::Point(1207, 30);
 			this->track_list->Name = L"track_list";
 			this->track_list->Size = System::Drawing::Size(224, 160);
 			this->track_list->TabIndex = 3;
@@ -340,7 +340,7 @@ namespace MediaPlayerMIU
 			this->Controls->Add(this->track_list);
 			this->Controls->Add(this->function_panel);
 			this->Controls->Add(this->player);
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
@@ -411,6 +411,7 @@ namespace MediaPlayerMIU
 	{
 		OpenFileDialog^ ofd = gcnew OpenFileDialog();
 		ofd->Multiselect = true;
+
 		if (ofd->ShowDialog() == System::Windows::Forms::DialogResult::OK)
 		{
 			// What' the difference between both?
@@ -419,45 +420,49 @@ namespace MediaPlayerMIU
 
 			for (int x = 0; x < files->Length; x++)
 			{
-				// For URL display on track item at top right
-				track_list->Items->Add(files[x]); 
-
 				// Then add the video into list for implementation
-				videoList->addVideo(paths[x]); // Add URL to VideoList;
-
-				Console::WriteLine("Adding video to videoList and track_list: {0}", paths[x]); //DEBUG LINE
+				videoList->addVideo(paths[x], files[x]); // Add URL to VideoList;
 			}
-			Console::WriteLine("Number of files selected: {0}", files->Length);
+
+			// Use the VideoList method to populate the track list
+			videoList->populateTrackList(track_list);
 		}
 	}
 
-private: System::Void track_list_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e)
-{
-	if (track_list->SelectedIndex >= 0 && track_list->SelectedIndex < paths->Length && track_list->SelectedIndex < videoList->getSize())
+	private: System::Void track_list_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e)
 	{
-		// Make the current player's URL be the video's path through the "paths" array that holds video paths
-		player->URL = paths[track_list->SelectedIndex];
+		// To make code more readable
+		int selectedIndex = track_list->SelectedIndex;
 
-		// Start the video
-		player->Ctlcontrols->play();
+		// Simplified it + now only the videoList's size should be checked.
+		if (selectedIndex >= 0 && selectedIndex < videoList->getSize())
+		{
+			// Set the current node in VideoList to match the selected track
+			videoList->setCurrentNode(selectedIndex);
 
-		// Set the video name label to be the video's name through the "files" array that holds video names
-		video_name->Text = files[track_list->SelectedIndex];
+			// Update the player's URL to the currently selected video's path
+			player->URL = videoList->getCurrentNodePath();
 
-		// Switch Icon for pause and play
-		play_button->Visible = false;
-		pause_button->Visible = true;
+			// Start the video
+			player->Ctlcontrols->play();
 
-		// Set the isPlaying flag to be true
-		isPlaying = true;
+			// Set the video name label to be the video's name through the "files" array that holds video names
+			video_name->Text = videoList->getCurrentNodeName();
 
-		// Switch status label for design
-		statusLabel->Text = "Playing...";
+			// Switch Icon for pause and play
+			play_button->Visible = false;
+			pause_button->Visible = true;
 
-		// Most importantly, start timer for a working progress bar.
-		timer->Start();
+			// Set the isPlaying flag to be true
+			isPlaying = true;
+
+			// Switch status label for design
+			statusLabel->Text = "Playing...";
+
+			// Most importantly, start timer for a working progress bar.
+			timer->Start();
+		}
 	}
-}
 
 	private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -473,7 +478,8 @@ private: System::Void track_list_SelectedIndexChanged(System::Object^ sender, Sy
 		
 	}
 
-	private: System::Void progressBar1_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void progressBar1_Click(System::Object^ sender, System::EventArgs^ e)
+	{
 	}
 
 	   /*EVEN HANDLING OF SHUFFLE

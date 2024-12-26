@@ -48,6 +48,7 @@ private:
     ref struct Node
     {
         String^ videoPath; //type of string that .NET can understand
+        String^ videoName; // Added this to be used to populate tracklist dynamically
         Node^ next;
         Node^ prev;
         /*
@@ -55,6 +56,7 @@ private:
         ^ is used instead of pointers for objects in the managed heap section(which are automtically garbage collected)
        */
        Node(String^ path) : videoPath(path), next(nullptr), prev(nullptr) {}
+       Node(String^ path, String^ name): videoPath(path), videoName(name), next(nullptr), prev(nullptr) {}
     };
 
     Node^ head; // Points to the first node
@@ -70,14 +72,26 @@ public:
     // Add a video path to the list
     void addVideo(String^ videoPath);
 
+    // Add a video path and it's name to the list
+    void addVideo(String^ videoPath, String^ videoName);
+
     // Move to the next video
     String^ nextVideo();
 
     // Move to the previous video
     String^ prevVideo();
 
-    // Get the current video
-    String^ getCurrentVideo();
+    // Get the current video's path (Current Node)
+    String^ getCurrentNodePath();
+
+    // Get the current video's name (Current Node)
+    String^ getCurrentNodeName();
+
+    // Set the current video through an index(Current Node)
+    void setCurrentNode(int index);
+
+    // Added a function that's gets a specific video node through it's index.
+    Node^ VideoList::getVideoAt(int index);
 
     // Check if the list is empty
     bool isEmpty();
@@ -94,7 +108,8 @@ public:
     // Get the curret index of the node.
     int getCurrentNodeIndex();
 
-    void setCurrentNode(String^ videoPath);
+    // Added a function to populate tracklist and to mantain encapsulation of the "Node" private member
+    void populateTrackList(System::Windows::Forms::ListBox^ track_list);
 
     void shuffle();
 };
