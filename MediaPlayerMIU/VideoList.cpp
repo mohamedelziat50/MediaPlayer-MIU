@@ -51,6 +51,41 @@ void VideoList::addVideo(String^ videoPath)
     }
 }
 
+// Add a video path and it's name to the list (OVER-LOADED FUNCTION)
+void  VideoList::addVideo(String^ videoPath, String^ videoName)
+{
+    // Create new node object that takes in the video path.
+    Node^ newNode = gcnew Node(videoPath, videoName);
+    assert(newNode != nullptr);
+
+    if (isEmpty())
+    {
+        // First insertion will be the head.
+        head = newNode;
+        tail = newNode;
+        // Since it's circular + doubly, need to wrap around always!
+        newNode->next = newNode;
+        newNode->prev = newNode;
+
+        // Set the current Node to be the current playing video.
+        // current = head; CURRENT SHOULD BE USED IN THE GUI 
+        //Want to make it so that the selected video is the current one. How?
+    }
+    else
+    {
+        // Set the new inserted node to be the current tail's next
+        tail->next = newNode;
+
+        // Pointers to mantain doubly circular l.l
+        newNode->prev = tail;
+        newNode->next = head;
+
+        // Set also the new tail for the head
+        head->prev = newNode;
+        tail = newNode; // Update tail
+    }
+}
+
 // Function that switches the current node to the previous
 String^ VideoList::prevVideo()
 {
@@ -72,11 +107,6 @@ String^ VideoList::nextVideo()
 
     current = current->next;
     return current->videoPath;
-}
-
-String^ VideoList::getCurrentVideo()
-{
-    return isCurrentEmpty() ? nullptr : current->videoPath;
 }
 
 void VideoList::printList()
@@ -131,23 +161,71 @@ int VideoList::getCurrentNodeIndex()
     return -1; // In case the current node is not found, which should not happen in normal conditions
 }
 
-//When you click on a video path in the gui, it becomes the current node
-void VideoList::setCurrentNode(String^ videoPath)
+// Get the current video's path (Current Node)
+String^ VideoList::getCurrentNodePath()
 {
-    if (isEmpty())
+    return isCurrentEmpty() ? nullptr : current->videoPath;
+}
+
+// Get the current video's name (Current Node)
+String^ VideoList::getCurrentNodeName()
+{
+    return isCurrentEmpty() ? nullptr : current->videoName;
+}
+
+//When you click on a video path in the gui, it becomes the current node
+void VideoList::setCurrentNode(int index)
+{
+    if (index < 0 || index >= getSize())
         return;
 
     Node^ temp = head;
+
+    for (int i = 0; i < index; i++)
+    {
+        temp = temp->next;
+    }
+    
+    current = temp;
+}
+
+
+
+
+// Added a function that's gets a specific video node through it's index.
+VideoList::Node^ VideoList::getVideoAt(int index)
+{
+    if (index < 0 || index >= getSize())
+        return nullptr;
+
+    Node^ temp = head;
+    for (int i = 0; i < index; i++)
+    {
+        temp = temp->next;
+    }
+    return temp;
+}
+
+// Added a function to populate tracklist and to mantain encapsulation of the "Node" private member
+void VideoList::populateTrackList(System::Windows::Forms::ListBox^ track_list)
+{
+    if (isEmpty() || track_list == nullptr)
+        return;
+
+    // Clear the existing items in the track list
+    track_list->Items->Clear(); 
+
+    Node^ temp = head;
+
     do
     {
-        if (temp->videoPath == videoPath)
-        {
-            current = temp;
-            return;
-        }
+        // Add the video name to the track list
+        track_list->Items->Add(temp->videoName);
         temp = temp->next;
-    } while (temp != head);
+    } 
+    while (temp != head); // Continue until we loop back to the head
 }
+
 
 void VideoList::shuffle()
 {
