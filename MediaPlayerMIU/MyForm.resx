@@ -123,16 +123,27 @@
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACFTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5BeEhvc3QrU3RhdGUBAAAABERhdGEHAgIAAAAJAwAAAA8DAAAAtwAAAAIB
         AAAAAQAAAAAAAAAAAAAAAKIAAAABAwAACAAAAAAABQAAAAAAAADwPwMAAAAAAAUAAAAAAAAAAAAIAAIA
-        AAAAAAMAAQAAAAsA//8DAAAAAAALAP//CAACAAAAAAADADIAAAALAAAACAAKAAAAbgBvAG4AZQAAAAsA
-        AAALAAAACwD//wsA//8LAAAACAACAAAAAAAIAAIAAAAAAAgAAgAAAAAACAACAAAAAAALAAAAW2QAADk4
+        AAAAAAMAAQAAAAsA//8DAAAAAAALAP//CAACAAAAAAADADIAAAALAAAACAAKAAAAZgB1AGwAbAAAAAsA
+        //8LAAAACwD//wsA//8LAAAACAACAAAAAAAIAAIAAAAAAAgAAgAAAAAACAACAAAAAAALAAAAFZ8AAK1T
         AAAL
 </value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="fullScreenButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DQAACw0B7QfALAAAASJJREFUaEPtmMFqAkEQBRfix8Ugmpt+fXIw0STH/EB8fViQ0OxMUw0j2gV1WbB4
+        C8IMOxVFUdwNf0Hf5Vr2cpBf0mstGcaLtDzKHlbyV3qNlmG8SMveF3mSN/sib/JZ9rKXQ/5ao8A7cCAJ
+        vAMHksA7cCAJvAMHksA7cCAJvAMHksA7cCAJvMPuTvOP7bAbxaecd3zYgyh2AbQrhxk5sbPZyR9pt4Ct
+        PSiKoiiKorgDXqXdcb7lyDsO3oFvnUngHfOPZ0eBd+BAEngHDiSBd+BAEngHDiSBd+BAEngHDiSBd+BA
+        EnjH/0BLO7giJ++LvP7k1GsYL9LyLHuxU9prtAzjRVqeZC/2vcxrtAzjRZa0v9ZG9mIfAO0LptdasiiK
+        x2WaLr/hcEZem6G+AAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="progressBarButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAAAP5JREFUSEvtlEsKwjAURTtRl9APHXYUddR1Ki0tuhg/m6guxM8wovfBG0hIPy8t
+        DAAACwwBP0AiyAAAAP5JREFUSEvtlEsKwjAURTtRl9APHXYUddR1Ki0tuhg/m6guxM8wovfBG0hIPy8t
         dJIDFwTzzpUkJvB4PLOQpuk2SZISuSFvDn0uwjDc8LLpyLJsFcfxAQUf5NsSjTW1UmrJY+Pg0qulyBqs
         vUxSDtHRVtCTisfd4DPt2t62aJz5mjVyIKCLZBP3Bju1Z40cCO6mUJCGNXIw/DJkkjxZI4eGDZkkD9bI
         wfBsW10YssHB5dqxRg49g5BoUzogOooixRo38Mtri7gvJY+7Q88fys8WuTVYe8rzfMHj46BySCuka9vp

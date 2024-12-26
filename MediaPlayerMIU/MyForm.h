@@ -36,6 +36,9 @@ namespace MediaPlayerMIU
 	private: System::Windows::Forms::Button^ soundButton;
 	private: System::Windows::Forms::Button^ muteButton;
 	private: System::Windows::Forms::Button^ progressBarButton;
+	private: System::Windows::Forms::Button^ fullScreenButton;
+
+
 
 
 
@@ -113,6 +116,8 @@ namespace MediaPlayerMIU
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->player = (gcnew AxWMPLib::AxWindowsMediaPlayer());
 			this->function_panel = (gcnew System::Windows::Forms::Panel());
+			this->fullScreenButton = (gcnew System::Windows::Forms::Button());
+			this->track_list = (gcnew System::Windows::Forms::ListBox());
 			this->progressBarButton = (gcnew System::Windows::Forms::Button());
 			this->muteButton = (gcnew System::Windows::Forms::Button());
 			this->soundButton = (gcnew System::Windows::Forms::Button());
@@ -129,7 +134,6 @@ namespace MediaPlayerMIU
 			this->next_button = (gcnew System::Windows::Forms::Button());
 			this->pause_button = (gcnew System::Windows::Forms::Button());
 			this->play_button = (gcnew System::Windows::Forms::Button());
-			this->track_list = (gcnew System::Windows::Forms::ListBox());
 			this->statusLabel = (gcnew System::Windows::Forms::Label());
 			this->timer = (gcnew System::Windows::Forms::Timer(this->components));
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->player))->BeginInit();
@@ -142,7 +146,7 @@ namespace MediaPlayerMIU
 			this->player->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->player->Enabled = true;
 			this->player->Location = System::Drawing::Point(0, 0);
-			this->player->Margin = System::Windows::Forms::Padding(4);
+			this->player->Margin = System::Windows::Forms::Padding(0);
 			this->player->Name = L"player";
 			this->player->OcxState = (cli::safe_cast<System::Windows::Forms::AxHost::State^>(resources->GetObject(L"player.OcxState")));
 			this->player->Size = System::Drawing::Size(1924, 1012);
@@ -154,6 +158,8 @@ namespace MediaPlayerMIU
 			this->function_panel->AutoSize = true;
 			this->function_panel->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->function_panel->BackColor = System::Drawing::Color::DimGray;
+			this->function_panel->Controls->Add(this->fullScreenButton);
+			this->function_panel->Controls->Add(this->track_list);
 			this->function_panel->Controls->Add(this->progressBarButton);
 			this->function_panel->Controls->Add(this->muteButton);
 			this->function_panel->Controls->Add(this->soundButton);
@@ -177,6 +183,36 @@ namespace MediaPlayerMIU
 			this->function_panel->Size = System::Drawing::Size(1924, 198);
 			this->function_panel->TabIndex = 2;
 			this->function_panel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::function_panel_Paint);
+			// 
+			// fullScreenButton
+			// 
+			this->fullScreenButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
+			this->fullScreenButton->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->fullScreenButton->FlatAppearance->BorderSize = 0;
+			this->fullScreenButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->fullScreenButton->ForeColor = System::Drawing::Color::White;
+			this->fullScreenButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"fullScreenButton.Image")));
+			this->fullScreenButton->Location = System::Drawing::Point(1871, 136);
+			this->fullScreenButton->Margin = System::Windows::Forms::Padding(4);
+			this->fullScreenButton->Name = L"fullScreenButton";
+			this->fullScreenButton->Size = System::Drawing::Size(55, 62);
+			this->fullScreenButton->TabIndex = 21;
+			this->fullScreenButton->UseVisualStyleBackColor = true;
+			this->fullScreenButton->Click += gcnew System::EventHandler(this, &MyForm::fullScreenButton_Click);
+			// 
+			// track_list
+			// 
+			this->track_list->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->track_list->BackColor = System::Drawing::Color::DimGray;
+			this->track_list->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->track_list->FormattingEnabled = true;
+			this->track_list->ItemHeight = 16;
+			this->track_list->Location = System::Drawing::Point(299, 82);
+			this->track_list->Margin = System::Windows::Forms::Padding(4);
+			this->track_list->Name = L"track_list";
+			this->track_list->Size = System::Drawing::Size(310, 112);
+			this->track_list->TabIndex = 3;
+			this->track_list->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::track_list_SelectedIndexChanged);
 			// 
 			// progressBarButton
 			// 
@@ -295,7 +331,7 @@ namespace MediaPlayerMIU
 			this->upload_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->upload_button->ForeColor = System::Drawing::Color::White;
 			this->upload_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"upload_button.Image")));
-			this->upload_button->Location = System::Drawing::Point(1823, 106);
+			this->upload_button->Location = System::Drawing::Point(1870, 55);
 			this->upload_button->Margin = System::Windows::Forms::Padding(4);
 			this->upload_button->Name = L"upload_button";
 			this->upload_button->Size = System::Drawing::Size(61, 57);
@@ -419,27 +455,16 @@ namespace MediaPlayerMIU
 			this->play_button->UseVisualStyleBackColor = true;
 			this->play_button->Click += gcnew System::EventHandler(this, &MyForm::play_button_Click);
 			// 
-			// track_list
-			// 
-			this->track_list->BackColor = System::Drawing::SystemColors::InactiveCaption;
-			this->track_list->FormattingEnabled = true;
-			this->track_list->ItemHeight = 16;
-			this->track_list->Location = System::Drawing::Point(1609, 37);
-			this->track_list->Margin = System::Windows::Forms::Padding(4);
-			this->track_list->Name = L"track_list";
-			this->track_list->Size = System::Drawing::Size(297, 196);
-			this->track_list->TabIndex = 3;
-			this->track_list->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::track_list_SelectedIndexChanged);
-			// 
 			// statusLabel
 			// 
 			this->statusLabel->AutoSize = true;
+			this->statusLabel->BackColor = System::Drawing::Color::Transparent;
 			this->statusLabel->Location = System::Drawing::Point(60, 37);
 			this->statusLabel->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->statusLabel->Name = L"statusLabel";
-			this->statusLabel->Size = System::Drawing::Size(44, 16);
+			this->statusLabel->Size = System::Drawing::Size(42, 16);
 			this->statusLabel->TabIndex = 4;
-			this->statusLabel->Text = L"label1";
+			this->statusLabel->Text = L"status";
 			// 
 			// timer
 			// 
@@ -451,11 +476,10 @@ namespace MediaPlayerMIU
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1924, 1012);
 			this->Controls->Add(this->statusLabel);
-			this->Controls->Add(this->track_list);
 			this->Controls->Add(this->function_panel);
 			this->Controls->Add(this->player);
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->Name = L"Media Player";
+			this->Name = L"MyForm";
 			this->Text = L"Media Player";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->player))->EndInit();
@@ -767,8 +791,43 @@ namespace MediaPlayerMIU
 				play_button->Hide();
 			}
 		}
+		else if (e->KeyCode == Keys::M) {
+			muteButton_Click(sender, e);
+		}
+		else if (e->KeyCode == Keys::F) {
+			fullScreenButton_Click(sender, e);
+
+		}
+	
 	}
+
 	
 
+private: System::Void fullScreenButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (function_panel->Visible) {
+		function_panel->Hide();
+		track_list->Hide();
+		statusLabel->Hide();
+		this->WindowState = FormWindowState::Maximized;
+
+		// Adjust the player to fill the entire form
+		player->Dock = DockStyle::Fill;  // This makes the player fill the form
+		player->BringToFront(); // Ensure the player is on top of other controls
+		
+	}
+	else {
+		function_panel->Show();
+		track_list->Show();
+		statusLabel->Show();
+	}
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (track_list->Visible) {
+		track_list->Hide();
+	}
+	else {
+		track_list->Show();
+	}
+}
 };
 }
