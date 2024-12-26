@@ -1,4 +1,5 @@
 #include "VideoList.h"
+#include "time.h"
 
 // Consruct an empty VideoList object
 VideoList::VideoList() : head(nullptr), current(nullptr) {} // Intialize to null
@@ -146,4 +147,27 @@ void VideoList::setCurrentNode(String^ videoPath)
         }
         temp = temp->next;
     } while (temp != head);
+}
+
+void VideoList::shuffle()
+{
+    int listSize = getSize();
+    if (listSize == 1 || listSize == 0)
+    {
+        return;
+    }
+
+    srand(time(0));
+
+    // Generate a random index between 0 and listSize - 1
+    int randomIndex = rand() % listSize;
+
+    // Traverse to the random index
+    Node^ temp = head;
+    for (int i = 0; i < randomIndex; i++)
+    {
+        temp = temp->next;
+    }
+
+    current = temp;
 }

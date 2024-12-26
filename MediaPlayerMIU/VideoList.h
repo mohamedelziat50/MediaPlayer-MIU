@@ -96,5 +96,6 @@ public:
 
     void setCurrentNode(String^ videoPath);
 
+    void shuffle();
 };
 
