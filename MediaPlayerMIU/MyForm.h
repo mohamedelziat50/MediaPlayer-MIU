@@ -20,6 +20,7 @@ namespace MediaPlayerMIU
 
 	private:VideoList^ videoList;
 	private: bool isPlaying = false;  // Boolean to track the state (play/pause)
+	private: bool mainSceneVisible = true;
 	private: cli::array<String^>^ paths;
 	private: System::Windows::Forms::ListBox^ track_list;
 	private: System::Windows::Forms::Label^ statusLabel;
@@ -38,6 +39,9 @@ namespace MediaPlayerMIU
 	private: System::Windows::Forms::Button^ soundButton;
 	private: System::Windows::Forms::Button^ muteButton;
 	private: System::Windows::Forms::Button^ progressBarButton;
+	private: System::Windows::Forms::Button^ switch_button;
+	private: System::Windows::Forms::Button^ front_button;
+
 
 
 
@@ -52,9 +56,6 @@ namespace MediaPlayerMIU
 		MyForm(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
 
 			// This makes the WMP's built-in functionality hidden
 			this->player->uiMode = L"none";  // This hides all UI elements like play/pause buttons
@@ -135,6 +136,8 @@ namespace MediaPlayerMIU
 			this->track_list = (gcnew System::Windows::Forms::ListBox());
 			this->statusLabel = (gcnew System::Windows::Forms::Label());
 			this->timer = (gcnew System::Windows::Forms::Timer(this->components));
+			this->switch_button = (gcnew System::Windows::Forms::Button());
+			this->front_button = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->player))->BeginInit();
 			this->function_panel->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->soundBar))->BeginInit();
@@ -249,7 +252,7 @@ namespace MediaPlayerMIU
 			// 
 			this->soundBar->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->soundBar->Location = System::Drawing::Point(64, 93);
-			this->soundBar->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->soundBar->Margin = System::Windows::Forms::Padding(2);
 			this->soundBar->Maximum = 100;
 			this->soundBar->Name = L"soundBar";
 			this->soundBar->Size = System::Drawing::Size(109, 45);
@@ -268,7 +271,7 @@ namespace MediaPlayerMIU
 			this->shuffle_button->ForeColor = System::Drawing::Color::White;
 			this->shuffle_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"shuffle_button.Image")));
 			this->shuffle_button->Location = System::Drawing::Point(626, 132);
-			this->shuffle_button->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->shuffle_button->Margin = System::Windows::Forms::Padding(2);
 			this->shuffle_button->Name = L"shuffle_button";
 			this->shuffle_button->Size = System::Drawing::Size(36, 36);
 			this->shuffle_button->TabIndex = 16;
@@ -302,7 +305,7 @@ namespace MediaPlayerMIU
 			// progressBar1
 			// 
 			this->progressBar1->Location = System::Drawing::Point(64, 19);
-			this->progressBar1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->progressBar1->Margin = System::Windows::Forms::Padding(2);
 			this->progressBar1->Name = L"progressBar1";
 			this->progressBar1->Size = System::Drawing::Size(1419, 10);
 			this->progressBar1->TabIndex = 12;
@@ -446,7 +449,7 @@ namespace MediaPlayerMIU
 			// statusLabel
 			// 
 			this->statusLabel->AutoSize = true;
-			this->statusLabel->Location = System::Drawing::Point(45, 30);
+			this->statusLabel->Location = System::Drawing::Point(61, 52);
 			this->statusLabel->Name = L"statusLabel";
 			this->statusLabel->Size = System::Drawing::Size(35, 13);
 			this->statusLabel->TabIndex = 4;
@@ -456,16 +459,50 @@ namespace MediaPlayerMIU
 			// 
 			this->timer->Tick += gcnew System::EventHandler(this, &MyForm::timer_Tick);
 			// 
+			// switch_button
+			// 
+			this->switch_button->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
+			this->switch_button->AutoSize = true;
+			this->switch_button->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->switch_button->FlatAppearance->BorderSize = 0;
+			this->switch_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->switch_button->ForeColor = System::Drawing::Color::White;
+			this->switch_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"switch_button.Image")));
+			this->switch_button->Location = System::Drawing::Point(0, 0);
+			this->switch_button->Name = L"switch_button";
+			this->switch_button->Size = System::Drawing::Size(46, 46);
+			this->switch_button->TabIndex = 5;
+			this->switch_button->UseVisualStyleBackColor = false;
+			this->switch_button->Click += gcnew System::EventHandler(this, &MyForm::switch_button_Click);
+			// 
+			// front_button
+			// 
+			this->front_button->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
+			this->front_button->AutoSize = true;
+			this->front_button->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->front_button->FlatAppearance->BorderSize = 0;
+			this->front_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->front_button->ForeColor = System::Drawing::Color::White;
+			this->front_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"front_button.Image")));
+			this->front_button->Location = System::Drawing::Point(0, 52);
+			this->front_button->Name = L"front_button";
+			this->front_button->Size = System::Drawing::Size(46, 46);
+			this->front_button->TabIndex = 6;
+			this->front_button->UseVisualStyleBackColor = false;
+			this->front_button->Click += gcnew System::EventHandler(this, &MyForm::front_button_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1563, 838);
+			this->Controls->Add(this->front_button);
+			this->Controls->Add(this->switch_button);
 			this->Controls->Add(this->statusLabel);
 			this->Controls->Add(this->track_list);
 			this->Controls->Add(this->function_panel);
 			this->Controls->Add(this->player);
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(2);
 			this->Name = L"MyForm";
 			this->Text = L"Media Player";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
@@ -818,7 +855,64 @@ namespace MediaPlayerMIU
 			}
 		}
 	}
-	
+
+		private: void HideAllControls_VideoScene()
+		{
+			// Hide the video player
+			if (this->player != nullptr)
+				this->player->Visible = false;
+
+			// Hide the status label
+			if (this->statusLabel != nullptr)
+				this->statusLabel->Visible = false;
+
+			// Hide the track list
+			if (this->track_list != nullptr)
+				this->track_list->Visible = false;
+
+			// Hide the function
+			if (this->function_panel != nullptr)
+				this->function_panel->Visible = false;
+		}
+
+		private: void ShowAllControls_VideoScene()
+		{
+			// Hide the video player
+			if (this->player != nullptr)
+				this->player->Visible = true;
+
+			// Hide the status label
+			if (this->statusLabel != nullptr)
+				this->statusLabel->Visible = true;
+
+			// Hide the track list
+			if (this->track_list != nullptr)
+				this->track_list->Visible = true;
+
+			// Hide the function
+			if (this->function_panel != nullptr)
+				this->function_panel->Visible = true;
+		}
+
+	private: System::Void switch_button_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		if (mainSceneVisible)
+		{
+			HideAllControls_VideoScene();
+			mainSceneVisible = false;
+			
+			if(isPlaying)
+				player->Ctlcontrols->stop();
+		}
+	}
+	private: System::Void front_button_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		if (!mainSceneVisible)
+		{
+			ShowAllControls_VideoScene();
+			mainSceneVisible = true;
+		}
+	}
 
 };
 }
