@@ -441,15 +441,19 @@ namespace MediaPlayerMIU
 		}
 	}
 
-	private: System::Void track_list_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (track_list->SelectedIndex >= 0 && track_list->SelectedIndex < paths->Length && track_list->SelectedIndex < videoList->getSize()) {
-			player->URL = paths[track_list->SelectedIndex];
-			player->Ctlcontrols->play();
-			statusLabel->Text = "Playing...";
-			timer->Start();
-		}
+private: System::Void track_list_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e)
+{
+	if (track_list->SelectedIndex >= 0 && track_list->SelectedIndex < paths->Length && track_list->SelectedIndex < videoList->getSize()) {
+		player->URL = paths[track_list->SelectedIndex];
+		player->Ctlcontrols->play();
+		video_name->Text = files[track_list->SelectedIndex];
+		play_button->Visible = false;
+		pause_button->Visible = true; //switch to pause button icon
+		isPlaying = true;
+		statusLabel->Text = "Playing...";
 	}
+}
+
 	private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e)
 	{
 		
@@ -464,5 +468,21 @@ namespace MediaPlayerMIU
 	}
 private: System::Void progressBar1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
+
+	   /*EVEN HANDLING OF SHUFFLE
+	   videoList->shuffle();
+               String^ shuffledVideo = videoList->getCurrentVideo();
+		player->Ctlcontrols->play();
+		isPlaying = true;
+
+		if (paths != nullptr && track_list->SelectedIndex >= 0)
+		{
+			video_name->Text = files[track_list->SelectedIndex];
+		}
+		else
+		{
+			video_name->Text = "No video selected";
+		}
+	   */
 };
 }
