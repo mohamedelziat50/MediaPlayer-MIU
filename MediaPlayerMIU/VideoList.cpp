@@ -254,3 +254,37 @@ int VideoList::shuffle()
     // To be used with selectedindexchanged
     return randomIndex;
 }
+
+void VideoList::removeVideo(System::Windows::Forms::ListBox^ track_list) {
+    if (isEmpty() || track_list == nullptr || isCurrentEmpty())
+        return;
+
+    if (head == current) {
+        head = current->next;
+    }
+    if (tail == current) {
+        tail = current->prev;
+    }
+    if (head == current && tail == current) { // If there's only one node
+        head = nullptr;
+        tail = nullptr;
+    }
+    else {
+        Node^ prevNode = current->prev;
+        Node^ nextNode = current->next;
+
+        nextNode->prev = prevNode;
+        prevNode->next = nextNode;
+    }
+
+    delete current;
+    current = head; // Set current to the new head (or nullptr if the list is empty)
+
+    if (head == nullptr) { // Update the GUI track list if the list is now empty
+        track_list->Items->Clear();
+    }
+    else {
+        populateTrackList(track_list); // Refresh the track list
+    }
+}
+

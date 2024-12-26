@@ -113,5 +113,8 @@ public:
 
     // This function set's the current node to be at a random index.
     int shuffle();
+
+    //function to remove a video from the linked list
+    void removeVideo(System::Windows::Forms::ListBox^ track_list);
 };
 
