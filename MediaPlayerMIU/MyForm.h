@@ -455,8 +455,8 @@ namespace MediaPlayerMIU
 			this->Controls->Add(this->function_panel);
 			this->Controls->Add(this->player);
 			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->Name = L"MyForm";
-			this->Text = L"MyForm";
+			this->Name = L"Media Player";
+			this->Text = L"Media Player";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->player))->EndInit();
 			this->function_panel->ResumeLayout(false);
@@ -470,11 +470,14 @@ namespace MediaPlayerMIU
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e)
 	{
 		//Intialize
-		videoList = gcnew VideoList(); 
+		videoList = gcnew VideoList();
 
 		// Assert it doesn't equal null
 		assert(videoList != nullptr);
 
+		this->KeyPreview = true; // Enabling "KeyPreview" in order to capture key presses
+		this->KeyDown += gcnew KeyEventHandler(this, &MyForm::OnKeyDown); //KeyDown is a built-in event that triggers when a key on the keyboard is pressed
+		this->Icon = gcnew System::Drawing::Icon("app_icon.ico");
 	}
 	private: System::Void player_Enter(System::Object^ sender, System::EventArgs^ e) {
 	}
@@ -483,8 +486,8 @@ namespace MediaPlayerMIU
 
 		player->Ctlcontrols->currentPosition = currentPosition - 15;     // Set the new position
 	}
-	private: System::Void next_button_Click(System::Object^ sender, System::EventArgs^ e){
-		
+	private: System::Void next_button_Click(System::Object^ sender, System::EventArgs^ e) {
+
 		// Ensure the VideoList is not empty
 		if (!videoList->isEmpty())
 		{
@@ -501,7 +504,7 @@ namespace MediaPlayerMIU
 				// mediaPlayer->URL = nextVideoPath; // Replace with your media player logic
 			}
 		}
-		
+
 	}
 	private: System::Void play_button_Click(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -513,7 +516,7 @@ namespace MediaPlayerMIU
 		player->Ctlcontrols->play();
 		isPlaying = true;
 
-		
+
 
 	}
 	private: System::Void pause_button_Click(System::Object^ sender, System::EventArgs^ e)
@@ -525,7 +528,7 @@ namespace MediaPlayerMIU
 		// Set the isPlaying state to false
 		player->Ctlcontrols->pause();
 		isPlaying = false;
-		
+
 	}
 	private: System::Void function_panel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
@@ -559,8 +562,8 @@ namespace MediaPlayerMIU
 	private: System::Void video_name_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 
-	// Added function that opens file explorer to select videos.
-	private: System::Void upload_button_Click(System::Object^ sender, System::EventArgs^ e) 
+		   // Added function that opens file explorer to select videos.
+	private: System::Void upload_button_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		OpenFileDialog^ ofd = gcnew OpenFileDialog();
 		ofd->Multiselect = true;
@@ -672,54 +675,100 @@ namespace MediaPlayerMIU
 	}
 
 
-	   /*EVEN HANDLING OF SHUFFLE
-	   videoList->shuffle();
-               String^ shuffledVideo = videoList->getCurrentVideo();
-		player->Ctlcontrols->play();
-		isPlaying = true;
+		   /*EVEN HANDLING OF SHUFFLE
+		   videoList->shuffle();
+				   String^ shuffledVideo = videoList->getCurrentVideo();
+			player->Ctlcontrols->play();
+			isPlaying = true;
 
-		if (paths != nullptr && track_list->SelectedIndex >= 0)
-		{
-			video_name->Text = files[track_list->SelectedIndex];
+			if (paths != nullptr && track_list->SelectedIndex >= 0)
+			{
+				video_name->Text = files[track_list->SelectedIndex];
+			}
+			else
+			{
+				video_name->Text = "No video selected";
+			}
+		   */
+
+	private: System::Void soundButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (soundBar->Visible && soundLabel->Visible) {
+			muteButton->Hide();
+			soundBar->Hide();
+			soundLabel->Hide();
 		}
-		else
-		{
-			video_name->Text = "No video selected";
+		else {
+			muteButton->Show();
+			soundBar->Show();
+			soundLabel->Show();
 		}
-	   */
-
-private: System::Void soundButton_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (soundBar->Visible && soundLabel->Visible) {
-		muteButton->Hide();
-		soundBar->Hide();
-		soundLabel->Hide();
 	}
-	else {
-		muteButton->Show();
-		soundBar->Show();
-		soundLabel->Show();
-	}
-}
-private: System::Void soundBar_Scroll(System::Object^ sender, System::EventArgs^ e) {
-	player->settings->volume = soundBar->Value;
-	soundLabel->Text = soundBar->Value.ToString();
-}
-private: System::Void soundLabel_Click(System::Object^ sender, System::EventArgs^ e) {
-
-}
-private: System::Void muteButton_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (soundBar->Value > 0) {
-		player->settings->volume = 0;
-		soundBar->Value = 0;
+	private: System::Void soundBar_Scroll(System::Object^ sender, System::EventArgs^ e) {
+		player->settings->volume = soundBar->Value;
 		soundLabel->Text = soundBar->Value.ToString();
 	}
-	else {
-		player->settings->volume = 50;
-		soundBar->Value = 50;
-		soundLabel->Text = soundBar->Value.ToString();
+	private: System::Void soundLabel_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	}
+	private: System::Void muteButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (soundBar->Value > 0) {
+			player->settings->volume = 0;
+			soundBar->Value = 0;
+			soundLabel->Text = soundBar->Value.ToString();
+		}
+		else {
+			player->settings->volume = 50;
+			soundBar->Value = 50;
+			soundLabel->Text = soundBar->Value.ToString();
+		}
+
+	}
+	private: System::Void OnKeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e)
+	{
+		if (e->KeyCode == Keys::Right)
+		{
+			// Skip 5 seconds forward
+			if (player->Ctlcontrols->currentPosition + 5 <= player->currentMedia->duration)
+			{
+				player->Ctlcontrols->currentPosition += 5;
+			}
+			else
+			{
+				//CALL NEXT HERE INSTEAD OF ENDING
+				//player->Ctlcontrols->currentPosition = player->currentMedia->duration; 
+				next_button_Click(sender, e);
+			}
+		}
+		else if (e->KeyCode == Keys::Left)
+		{
+			// Skip 5 seconds backward
+			if (player->Ctlcontrols->currentPosition - 5 >= 0)
+			{
+				player->Ctlcontrols->currentPosition -= 5;
+			}
+			else
+			{
+				player->Ctlcontrols->currentPosition = 0; // Go to start
+			}
+		}
+		else if (e->KeyCode == Keys::K)
+		{
+			// Pause or play the video
+			if (player->playState == WMPLib::WMPPlayState::wmppsPlaying)
+			{
+				player->Ctlcontrols->pause();
+				pause_button->Hide();
+				play_button->Show();
+			}
+			else
+			{
+				player->Ctlcontrols->play();
+				pause_button->Show();
+				play_button->Hide();
+			}
+		}
 	}
 	
-}
 
 };
 }
