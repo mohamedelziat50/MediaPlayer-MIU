@@ -129,6 +129,32 @@
 </value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="shuffle_button.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAGkSURBVEhL7dbNK0RRHMbxi423lMRCFtjY2lDKS6wVC7Ky
+        smFjgX8CZUPKzpaQbKUshpSSlSQWNl6Knbe8fx8zR8dtxtxO3aM0T33q+p079zdznHPvDXL5L5nBCsq+
+        /vKYdXxgF16bl2AbGZvnoRb1llK4pADVMNdpxAnSNp+HBmzv2EE7okS/bhq3CF/LtoDvDGDTsoUL6MQX
+        9OO3qKm+pM5/xj7s653DNB5C1gxDjZ/QpkKaaGo3oIvuoQZ2NGN30PiEClGj5vqQprBBhVDmoPEjlKtg
+        xbmpyRT04VNUqpDKOFS/Qp0KoRzCuamSj2U8olkF0oc33KNJhTTpQm/y0D2F6EweBi14wCt6VPAR7c1r
+        aApHVfCRChxDTXUf9hJNdQJqugb934vRgdiiJktQU+3VIiir0OIyCy4cfanu5KFbJqGmZ6hSIZUxqJ5p
+        Ox1A407b6U9uICOI9ZY5CPumrofEJXSybvqxPSQWYQYMPRa1ilsRJVrhWgs3CF/L9uOxqOkKvwjoV7hE
+        OyDyi0BcyfrqE1fMovP+sjcLNffaNBcrQfAJvTqUZRpQ+AsAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="sound_button.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAGvSURBVEhL1ZdNKwVRGMePlGRBSfaiKHwHLLAhS2+RlGRj
+        Iy8rNlY+hEQKW0U2kohY+TBeFl7+/+eZc+9xnFEzd2Zu91e/ep65df7NmXPPnDG1SDs8hYewiReKoA2+
+        wO/IGZg7LfAJ2lC6BHOlGT5CNzT3YD7HG+iH5hrM0GsYCqVxwRNwRMvkNMIrGAq0xgVvwU+4Ll0CGuA5
+        DIW5/jfVY/AVrkjnUQc5JRzASvZhKMjXD56CQ1oKC/AD9kvnsAP9wcgz9K+H9IM3IIPmpFOO4KWWZR6g
+        PxhJG0y4qbxBe5edkM+7R7qIUABJGjwPR7UUTiDv1HIHORslsgrmoO+wTzpjBiD7eumM2YNnWipZBRM+
+        x10tTSvk7x3SGbMKb7VUaj54E3Jqe6XTqeYCc6ear9ISWQVzcQ1rKTDEXVz38NfiyuPvNAu5Y9m/Uxf8
+        gt3SRWxDfzCSNthuIAy3HMMLLctwy+QUcQArSbtlTsJBLYVFyGf/Z8uMI4uXxDjkAluWLgFZvBbXpEtB
+        JQcBd5WnoipHH0tVDnuWqhxvLf6BfhoWBj9h+L49gIV9wlSIMT/xyDNaHvHfSAAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="upload_button.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
