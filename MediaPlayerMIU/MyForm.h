@@ -40,6 +40,28 @@ namespace MediaPlayerMIU
 	private: System::Windows::Forms::Button^ progressBarButton;
 	private: int previousVolume = 50; //to store volume value
 	private: System::Windows::Forms::Button^ deleteButton;
+	private: System::Windows::Forms::Button^ speedButton;
+	private: System::Windows::Forms::Button^ speed2;
+	private: System::Windows::Forms::Button^ speed175;
+	private: System::Windows::Forms::Button^ speed125;
+
+
+
+
+	private: System::Windows::Forms::Button^ speed15;
+	private: System::Windows::Forms::Button^ speed25;
+
+
+	private: System::Windows::Forms::Button^ speed5;
+
+	private: System::Windows::Forms::Button^ speed75;
+
+	private: System::Windows::Forms::Button^ speed1;
+	private: System::Windows::Forms::Button^ repeatButton;
+
+
+
+
 
 
 
@@ -117,6 +139,16 @@ namespace MediaPlayerMIU
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
 			this->player = (gcnew AxWMPLib::AxWindowsMediaPlayer());
 			this->function_panel = (gcnew System::Windows::Forms::Panel());
+			this->repeatButton = (gcnew System::Windows::Forms::Button());
+			this->speed25 = (gcnew System::Windows::Forms::Button());
+			this->speed5 = (gcnew System::Windows::Forms::Button());
+			this->speed75 = (gcnew System::Windows::Forms::Button());
+			this->speed1 = (gcnew System::Windows::Forms::Button());
+			this->speed125 = (gcnew System::Windows::Forms::Button());
+			this->speed15 = (gcnew System::Windows::Forms::Button());
+			this->speed175 = (gcnew System::Windows::Forms::Button());
+			this->speed2 = (gcnew System::Windows::Forms::Button());
+			this->speedButton = (gcnew System::Windows::Forms::Button());
 			this->deleteButton = (gcnew System::Windows::Forms::Button());
 			this->progressBarButton = (gcnew System::Windows::Forms::Button());
 			this->muteButton = (gcnew System::Windows::Forms::Button());
@@ -160,6 +192,16 @@ namespace MediaPlayerMIU
 			this->function_panel->AutoSize = true;
 			this->function_panel->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->function_panel->BackColor = System::Drawing::Color::DimGray;
+			this->function_panel->Controls->Add(this->repeatButton);
+			this->function_panel->Controls->Add(this->speed25);
+			this->function_panel->Controls->Add(this->speed5);
+			this->function_panel->Controls->Add(this->speed75);
+			this->function_panel->Controls->Add(this->speed1);
+			this->function_panel->Controls->Add(this->speed125);
+			this->function_panel->Controls->Add(this->speed15);
+			this->function_panel->Controls->Add(this->speed175);
+			this->function_panel->Controls->Add(this->speed2);
+			this->function_panel->Controls->Add(this->speedButton);
 			this->function_panel->Controls->Add(this->deleteButton);
 			this->function_panel->Controls->Add(this->progressBarButton);
 			this->function_panel->Controls->Add(this->muteButton);
@@ -185,6 +227,184 @@ namespace MediaPlayerMIU
 			this->function_panel->Size = System::Drawing::Size(1924, 254);
 			this->function_panel->TabIndex = 2;
 			this->function_panel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::function_panel_Paint);
+			// 
+			// repeatButton
+			// 
+			this->repeatButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->repeatButton->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->repeatButton->BackColor = System::Drawing::Color::DimGray;
+			this->repeatButton->FlatAppearance->BorderSize = 0;
+			this->repeatButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->repeatButton->ForeColor = System::Drawing::SystemColors::Window;
+			this->repeatButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"repeatButton.Image")));
+			this->repeatButton->Location = System::Drawing::Point(605, 176);
+			this->repeatButton->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->repeatButton->Name = L"repeatButton";
+			this->repeatButton->Size = System::Drawing::Size(53, 47);
+			this->repeatButton->TabIndex = 31;
+			this->repeatButton->UseVisualStyleBackColor = false;
+			this->repeatButton->Click += gcnew System::EventHandler(this, &MyForm::repeatButton_Click);
+			// 
+			// speed25
+			// 
+			this->speed25->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
+			this->speed25->AutoSize = true;
+			this->speed25->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->speed25->FlatAppearance->BorderSize = 0;
+			this->speed25->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->speed25->ForeColor = System::Drawing::Color::White;
+			this->speed25->Location = System::Drawing::Point(1487, 175);
+			this->speed25->Margin = System::Windows::Forms::Padding(4);
+			this->speed25->Name = L"speed25";
+			this->speed25->Size = System::Drawing::Size(47, 26);
+			this->speed25->TabIndex = 30;
+			this->speed25->Text = L"0.25x";
+			this->speed25->UseVisualStyleBackColor = true;
+			this->speed25->Visible = false;
+			this->speed25->Click += gcnew System::EventHandler(this, &MyForm::speed25_Click);
+			// 
+			// speed5
+			// 
+			this->speed5->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
+			this->speed5->AutoSize = true;
+			this->speed5->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->speed5->FlatAppearance->BorderSize = 0;
+			this->speed5->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->speed5->ForeColor = System::Drawing::Color::White;
+			this->speed5->Location = System::Drawing::Point(1492, 154);
+			this->speed5->Margin = System::Windows::Forms::Padding(4);
+			this->speed5->Name = L"speed5";
+			this->speed5->Size = System::Drawing::Size(40, 26);
+			this->speed5->TabIndex = 29;
+			this->speed5->Text = L"0.5x";
+			this->speed5->UseVisualStyleBackColor = true;
+			this->speed5->Visible = false;
+			this->speed5->Click += gcnew System::EventHandler(this, &MyForm::speed5_Click);
+			// 
+			// speed75
+			// 
+			this->speed75->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
+			this->speed75->AutoSize = true;
+			this->speed75->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->speed75->FlatAppearance->BorderSize = 0;
+			this->speed75->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->speed75->ForeColor = System::Drawing::Color::White;
+			this->speed75->Location = System::Drawing::Point(1487, 136);
+			this->speed75->Margin = System::Windows::Forms::Padding(4);
+			this->speed75->Name = L"speed75";
+			this->speed75->Size = System::Drawing::Size(47, 26);
+			this->speed75->TabIndex = 28;
+			this->speed75->Text = L"0.75x";
+			this->speed75->UseVisualStyleBackColor = true;
+			this->speed75->Visible = false;
+			this->speed75->Click += gcnew System::EventHandler(this, &MyForm::speed75_Click);
+			// 
+			// speed1
+			// 
+			this->speed1->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
+			this->speed1->AutoSize = true;
+			this->speed1->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->speed1->FlatAppearance->BorderSize = 0;
+			this->speed1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->speed1->ForeColor = System::Drawing::Color::White;
+			this->speed1->Location = System::Drawing::Point(1491, 117);
+			this->speed1->Margin = System::Windows::Forms::Padding(4);
+			this->speed1->Name = L"speed1";
+			this->speed1->Size = System::Drawing::Size(40, 26);
+			this->speed1->TabIndex = 27;
+			this->speed1->Text = L"1.0x";
+			this->speed1->UseVisualStyleBackColor = true;
+			this->speed1->Visible = false;
+			this->speed1->Click += gcnew System::EventHandler(this, &MyForm::speed1_Click);
+			// 
+			// speed125
+			// 
+			this->speed125->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
+			this->speed125->AutoSize = true;
+			this->speed125->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->speed125->FlatAppearance->BorderSize = 0;
+			this->speed125->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->speed125->ForeColor = System::Drawing::Color::White;
+			this->speed125->Location = System::Drawing::Point(1485, 97);
+			this->speed125->Margin = System::Windows::Forms::Padding(4);
+			this->speed125->Name = L"speed125";
+			this->speed125->Size = System::Drawing::Size(47, 26);
+			this->speed125->TabIndex = 26;
+			this->speed125->Text = L"1.25x";
+			this->speed125->UseVisualStyleBackColor = true;
+			this->speed125->Visible = false;
+			this->speed125->Click += gcnew System::EventHandler(this, &MyForm::speed125_Click);
+			// 
+			// speed15
+			// 
+			this->speed15->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
+			this->speed15->AutoSize = true;
+			this->speed15->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->speed15->FlatAppearance->BorderSize = 0;
+			this->speed15->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->speed15->ForeColor = System::Drawing::Color::White;
+			this->speed15->Location = System::Drawing::Point(1487, 76);
+			this->speed15->Margin = System::Windows::Forms::Padding(4);
+			this->speed15->Name = L"speed15";
+			this->speed15->Size = System::Drawing::Size(40, 26);
+			this->speed15->TabIndex = 25;
+			this->speed15->Text = L"1.5x";
+			this->speed15->UseVisualStyleBackColor = true;
+			this->speed15->Visible = false;
+			this->speed15->Click += gcnew System::EventHandler(this, &MyForm::speed15_Click);
+			// 
+			// speed175
+			// 
+			this->speed175->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
+			this->speed175->AutoSize = true;
+			this->speed175->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->speed175->FlatAppearance->BorderSize = 0;
+			this->speed175->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->speed175->ForeColor = System::Drawing::Color::White;
+			this->speed175->Location = System::Drawing::Point(1485, 58);
+			this->speed175->Margin = System::Windows::Forms::Padding(4);
+			this->speed175->Name = L"speed175";
+			this->speed175->Size = System::Drawing::Size(47, 26);
+			this->speed175->TabIndex = 24;
+			this->speed175->Text = L"1.75x";
+			this->speed175->UseVisualStyleBackColor = true;
+			this->speed175->Visible = false;
+			this->speed175->Click += gcnew System::EventHandler(this, &MyForm::speed175_Click);
+			// 
+			// speed2
+			// 
+			this->speed2->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
+			this->speed2->AutoSize = true;
+			this->speed2->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->speed2->FlatAppearance->BorderSize = 0;
+			this->speed2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->speed2->ForeColor = System::Drawing::Color::White;
+			this->speed2->Location = System::Drawing::Point(1492, 39);
+			this->speed2->Margin = System::Windows::Forms::Padding(4);
+			this->speed2->Name = L"speed2";
+			this->speed2->Size = System::Drawing::Size(30, 26);
+			this->speed2->TabIndex = 23;
+			this->speed2->Text = L"2x";
+			this->speed2->UseVisualStyleBackColor = true;
+			this->speed2->Visible = false;
+			this->speed2->Click += gcnew System::EventHandler(this, &MyForm::speed2_Click);
+			// 
+			// speedButton
+			// 
+			this->speedButton->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
+			this->speedButton->AutoSize = true;
+			this->speedButton->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->speedButton->FlatAppearance->BorderSize = 0;
+			this->speedButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->speedButton->ForeColor = System::Drawing::Color::White;
+			this->speedButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"speedButton.Image")));
+			this->speedButton->Location = System::Drawing::Point(1478, 194);
+			this->speedButton->Margin = System::Windows::Forms::Padding(4);
+			this->speedButton->Name = L"speedButton";
+			this->speedButton->Size = System::Drawing::Size(56, 56);
+			this->speedButton->TabIndex = 22;
+			this->speedButton->UseVisualStyleBackColor = true;
+			this->speedButton->Click += gcnew System::EventHandler(this, &MyForm::speedButton_Click);
 			// 
 			// deleteButton
 			// 
@@ -534,26 +754,29 @@ namespace MediaPlayerMIU
 
 		player->Ctlcontrols->currentPosition = currentPosition - 15;     // Set the new position
 	}
+		   bool isLooped = false;
 	private: System::Void next_button_Click(System::Object^ sender, System::EventArgs^ e) {
+	// Ensure the VideoList is not empty
+	if (!videoList->isEmpty())
+	{
+		// Get the next video path
+		
 
-		// Ensure the VideoList is not empty
-		if (!videoList->isEmpty())
-		{
-			// Switch to the next video in the list
-			String^ nextVideoPath = videoList->nextVideo();
-
-			if (nextVideoPath != nullptr)
-			{
-				// Update the ListBox's selected index to reflect the new current node
-				int newIndex = videoList->getCurrentNodeIndex();
-				track_list->SelectedIndex = newIndex;
-
-				// Optionally, start playing the new video
-				// mediaPlayer->URL = nextVideoPath; // Replace with your media player logic
-			}
+		if (isLooped) {
+			player->Ctlcontrols->currentPosition = 0;
 		}
+		else if (videoList->nextVideo() != nullptr)
+		{
+			// Update the ListBox's selected index to reflect the new current node
+			int newIndex = videoList->getCurrentNodeIndex();
+			track_list->SelectedIndex = newIndex;
 
+			// Optionally, start playing the new video
+			// mediaPlayer->URL = nextVideoPath; // Replace with your media player logic
+		}
 	}
+}
+
 
 	// Added function to be called anywhere in code, instead of related only to play/pause buttons.
 	private: void playAction()
@@ -597,9 +820,13 @@ namespace MediaPlayerMIU
 		if (!videoList->isEmpty())
 		{
 			// Switch to the next video in the list
-			String^ prevVideoPath = videoList->prevVideo();
-
-			if (prevVideoPath != nullptr)
+			
+			if (isLooped) {
+				player->Ctlcontrols->currentPosition = 0;
+			}
+			
+			
+			else if (videoList->prevVideo() != nullptr)
 			{
 				// Update the ListBox's selected index to reflect the new current node
 				int newIndex = videoList->getCurrentNodeIndex();
@@ -885,6 +1112,70 @@ private: System::Void statusLabel_Click(System::Object^ sender, System::EventArg
 }
 private: System::Void deleteButton_Click(System::Object^ sender, System::EventArgs^ e) {
 	videoList->removeVideo(track_list);
+	if (videoList->isEmpty()) {
+		pauseAction();
+		statusLabel->Text = "Empty";
+	}
+	next_button_Click(sender, e);
+	
+	
+	
+}
+
+
+private: System::Void speedButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	if(speed2->Visible){
+		speed1->Hide();
+		speed2->Hide();
+		speed175->Hide();
+		speed15->Hide();
+		speed125->Hide();
+		speed75->Hide();
+		speed5->Hide();
+		speed25->Hide();
+		
+	}
+	else {
+		speed1->Show();
+		speed2->Show();
+		speed175->Show();
+		speed15->Show();
+		speed125->Show();
+		speed75->Show();
+		speed5->Show();
+		speed25->Show();
+	}
+}
+
+
+
+private: System::Void speed2_Click(System::Object^ sender, System::EventArgs^ e) {
+	player->settings->rate = 2;
+}
+private: System::Void speed15_Click(System::Object^ sender, System::EventArgs^ e) {
+	player->settings->rate = 1.5;
+}
+private: System::Void speed175_Click(System::Object^ sender, System::EventArgs^ e) {
+	player->settings->rate = 1.75;
+}
+private: System::Void speed125_Click(System::Object^ sender, System::EventArgs^ e) {
+	player->settings->rate = 1.25;
+}
+
+private: System::Void speed1_Click(System::Object^ sender, System::EventArgs^ e) {
+	player->settings->rate = 1;
+}
+private: System::Void speed75_Click(System::Object^ sender, System::EventArgs^ e) {
+	player->settings->rate = 0.75;
+}
+private: System::Void speed5_Click(System::Object^ sender, System::EventArgs^ e) {
+	player->settings->rate = 0.5;
+}
+private: System::Void speed25_Click(System::Object^ sender, System::EventArgs^ e) {
+	player->settings->rate = 0.25;
+}
+private: System::Void repeatButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	isLooped = !isLooped;
 }
 };
 }
