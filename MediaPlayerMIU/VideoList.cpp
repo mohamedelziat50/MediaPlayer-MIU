@@ -182,9 +182,7 @@ void VideoList::setCurrentNode(int index)
     Node^ temp = head;
 
     for (int i = 0; i < index; i++)
-    {
         temp = temp->next;
-    }
     
     current = temp;
 }
@@ -226,26 +224,33 @@ void VideoList::populateTrackList(System::Windows::Forms::ListBox^ track_list)
     while (temp != head); // Continue until we loop back to the head
 }
 
-
-void VideoList::shuffle()
+// This function set's the current node to be at a random index.
+int VideoList::shuffle()
 {
+    // Get the list's size
     int listSize = getSize();
-    if (listSize == 1 || listSize == 0)
-    {
-        return;
-    }
 
+    // Condition to check whether shuffle is redundant
+    if (isEmpty() || listSize == 1)
+        return -1;
+
+    // Set the size to generate random indexes
     srand(time(0));
 
+    // Get the current Node's index
+    int index = getCurrentNodeIndex();
+    
     // Generate a random index between 0 and listSize - 1
     int randomIndex = rand() % listSize;
 
     // Traverse to the random index
     Node^ temp = head;
     for (int i = 0; i < randomIndex; i++)
-    {
         temp = temp->next;
-    }
-
+    
+    // Set the current node to be the new random index node
     current = temp;
+
+    // To be used with selectedindexchanged
+    return randomIndex;
 }

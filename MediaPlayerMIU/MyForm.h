@@ -29,6 +29,8 @@ namespace MediaPlayerMIU
 	private: System::Windows::Forms::ProgressBar^ progressBar1;
 	private: System::Windows::Forms::Label^ endtimer;
 
+	private: System::Windows::Forms::Button^ shuffle_button;
+
 
 
 	private: System::Windows::Forms::TrackBar^ soundBar;
@@ -118,6 +120,7 @@ namespace MediaPlayerMIU
 			this->soundButton = (gcnew System::Windows::Forms::Button());
 			this->soundLabel = (gcnew System::Windows::Forms::Label());
 			this->soundBar = (gcnew System::Windows::Forms::TrackBar());
+			this->shuffle_button = (gcnew System::Windows::Forms::Button());
 			this->endtimer = (gcnew System::Windows::Forms::Label());
 			this->starttimer = (gcnew System::Windows::Forms::Label());
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
@@ -142,10 +145,9 @@ namespace MediaPlayerMIU
 			this->player->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->player->Enabled = true;
 			this->player->Location = System::Drawing::Point(0, 0);
-			this->player->Margin = System::Windows::Forms::Padding(4);
 			this->player->Name = L"player";
 			this->player->OcxState = (cli::safe_cast<System::Windows::Forms::AxHost::State^>(resources->GetObject(L"player.OcxState")));
-			this->player->Size = System::Drawing::Size(1924, 1012);
+			this->player->Size = System::Drawing::Size(1563, 838);
 			this->player->TabIndex = 0;
 			this->player->Enter += gcnew System::EventHandler(this, &MyForm::player_Enter);
 			// 
@@ -159,6 +161,7 @@ namespace MediaPlayerMIU
 			this->function_panel->Controls->Add(this->soundButton);
 			this->function_panel->Controls->Add(this->soundLabel);
 			this->function_panel->Controls->Add(this->soundBar);
+			this->function_panel->Controls->Add(this->shuffle_button);
 			this->function_panel->Controls->Add(this->endtimer);
 			this->function_panel->Controls->Add(this->starttimer);
 			this->function_panel->Controls->Add(this->progressBar1);
@@ -171,10 +174,9 @@ namespace MediaPlayerMIU
 			this->function_panel->Controls->Add(this->pause_button);
 			this->function_panel->Controls->Add(this->play_button);
 			this->function_panel->Dock = System::Windows::Forms::DockStyle::Bottom;
-			this->function_panel->Location = System::Drawing::Point(0, 814);
-			this->function_panel->Margin = System::Windows::Forms::Padding(4);
+			this->function_panel->Location = System::Drawing::Point(0, 641);
 			this->function_panel->Name = L"function_panel";
-			this->function_panel->Size = System::Drawing::Size(1924, 198);
+			this->function_panel->Size = System::Drawing::Size(1563, 197);
 			this->function_panel->TabIndex = 2;
 			this->function_panel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::function_panel_Paint);
 			// 
@@ -188,10 +190,10 @@ namespace MediaPlayerMIU
 			this->progressBarButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->progressBarButton->ForeColor = System::Drawing::Color::White;
 			this->progressBarButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"progressBarButton.Image")));
-			this->progressBarButton->Location = System::Drawing::Point(85, 16);
+			this->progressBarButton->Location = System::Drawing::Point(64, 14);
 			this->progressBarButton->Margin = System::Windows::Forms::Padding(0);
 			this->progressBarButton->Name = L"progressBarButton";
-			this->progressBarButton->Size = System::Drawing::Size(27, 22);
+			this->progressBarButton->Size = System::Drawing::Size(20, 18);
 			this->progressBarButton->TabIndex = 20;
 			this->progressBarButton->UseVisualStyleBackColor = false;
 			// 
@@ -204,10 +206,9 @@ namespace MediaPlayerMIU
 			this->muteButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->muteButton->ForeColor = System::Drawing::Color::White;
 			this->muteButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"muteButton.Image")));
-			this->muteButton->Location = System::Drawing::Point(35, 82);
-			this->muteButton->Margin = System::Windows::Forms::Padding(4);
+			this->muteButton->Location = System::Drawing::Point(17, 96);
 			this->muteButton->Name = L"muteButton";
-			this->muteButton->Size = System::Drawing::Size(69, 30);
+			this->muteButton->Size = System::Drawing::Size(52, 24);
 			this->muteButton->TabIndex = 19;
 			this->muteButton->UseVisualStyleBackColor = false;
 			this->muteButton->Visible = false;
@@ -222,10 +223,9 @@ namespace MediaPlayerMIU
 			this->soundButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->soundButton->ForeColor = System::Drawing::Color::White;
 			this->soundButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"soundButton.Image")));
-			this->soundButton->Location = System::Drawing::Point(131, 132);
-			this->soundButton->Margin = System::Windows::Forms::Padding(4);
+			this->soundButton->Location = System::Drawing::Point(98, 143);
 			this->soundButton->Name = L"soundButton";
-			this->soundButton->Size = System::Drawing::Size(40, 40);
+			this->soundButton->Size = System::Drawing::Size(30, 32);
 			this->soundButton->TabIndex = 18;
 			this->soundButton->UseVisualStyleBackColor = false;
 			this->soundButton->Click += gcnew System::EventHandler(this, &MyForm::soundButton_Click);
@@ -236,9 +236,10 @@ namespace MediaPlayerMIU
 			this->soundLabel->BackColor = System::Drawing::Color::Transparent;
 			this->soundLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->soundLabel->Location = System::Drawing::Point(240, 88);
+			this->soundLabel->Location = System::Drawing::Point(177, 100);
+			this->soundLabel->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->soundLabel->Name = L"soundLabel";
-			this->soundLabel->Size = System::Drawing::Size(26, 18);
+			this->soundLabel->Size = System::Drawing::Size(23, 15);
 			this->soundLabel->TabIndex = 17;
 			this->soundLabel->Text = L"50";
 			this->soundLabel->Visible = false;
@@ -247,23 +248,42 @@ namespace MediaPlayerMIU
 			// soundBar
 			// 
 			this->soundBar->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->soundBar->Location = System::Drawing::Point(98, 83);
+			this->soundBar->Location = System::Drawing::Point(64, 93);
+			this->soundBar->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->soundBar->Maximum = 100;
 			this->soundBar->Name = L"soundBar";
-			this->soundBar->Size = System::Drawing::Size(145, 56);
+			this->soundBar->Size = System::Drawing::Size(109, 45);
 			this->soundBar->TabIndex = 16;
 			this->soundBar->Value = 50;
 			this->soundBar->Visible = false;
 			this->soundBar->Scroll += gcnew System::EventHandler(this, &MyForm::soundBar_Scroll);
+			// 
+			// shuffle_button
+			// 
+			this->shuffle_button->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
+			this->shuffle_button->AutoSize = true;
+			this->shuffle_button->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+			this->shuffle_button->FlatAppearance->BorderSize = 0;
+			this->shuffle_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->shuffle_button->ForeColor = System::Drawing::Color::White;
+			this->shuffle_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"shuffle_button.Image")));
+			this->shuffle_button->Location = System::Drawing::Point(626, 132);
+			this->shuffle_button->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->shuffle_button->Name = L"shuffle_button";
+			this->shuffle_button->Size = System::Drawing::Size(36, 36);
+			this->shuffle_button->TabIndex = 16;
+			this->shuffle_button->UseVisualStyleBackColor = true;
+			this->shuffle_button->Click += gcnew System::EventHandler(this, &MyForm::shuffle_button_Click);
 			// 
 			// endtimer
 			// 
 			this->endtimer->AutoSize = true;
 			this->endtimer->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->endtimer->Location = System::Drawing::Point(1867, 17);
+			this->endtimer->Location = System::Drawing::Point(1498, 19);
+			this->endtimer->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->endtimer->Name = L"endtimer";
-			this->endtimer->Size = System::Drawing::Size(49, 18);
+			this->endtimer->Size = System::Drawing::Size(43, 15);
 			this->endtimer->TabIndex = 14;
 			this->endtimer->Text = L"00:00";
 			// 
@@ -272,18 +292,19 @@ namespace MediaPlayerMIU
 			this->starttimer->AutoSize = true;
 			this->starttimer->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->starttimer->Location = System::Drawing::Point(23, 17);
+			this->starttimer->Location = System::Drawing::Point(17, 14);
+			this->starttimer->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->starttimer->Name = L"starttimer";
-			this->starttimer->Size = System::Drawing::Size(49, 18);
+			this->starttimer->Size = System::Drawing::Size(43, 15);
 			this->starttimer->TabIndex = 13;
 			this->starttimer->Text = L"00:00";
 			// 
 			// progressBar1
 			// 
-			this->progressBar1->Location = System::Drawing::Point(85, 23);
-			this->progressBar1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
+			this->progressBar1->Location = System::Drawing::Point(64, 19);
+			this->progressBar1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
 			this->progressBar1->Name = L"progressBar1";
-			this->progressBar1->Size = System::Drawing::Size(1779, 7);
+			this->progressBar1->Size = System::Drawing::Size(1419, 10);
 			this->progressBar1->TabIndex = 12;
 			this->progressBar1->Click += gcnew System::EventHandler(this, &MyForm::progressBar1_Click);
 			// 
@@ -291,14 +312,14 @@ namespace MediaPlayerMIU
 			// 
 			this->upload_button->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
 			this->upload_button->AutoSize = true;
+			this->upload_button->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->upload_button->FlatAppearance->BorderSize = 0;
 			this->upload_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->upload_button->ForeColor = System::Drawing::Color::White;
 			this->upload_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"upload_button.Image")));
-			this->upload_button->Location = System::Drawing::Point(1823, 106);
-			this->upload_button->Margin = System::Windows::Forms::Padding(4);
+			this->upload_button->Location = System::Drawing::Point(1486, 122);
 			this->upload_button->Name = L"upload_button";
-			this->upload_button->Size = System::Drawing::Size(61, 57);
+			this->upload_button->Size = System::Drawing::Size(46, 46);
 			this->upload_button->TabIndex = 11;
 			this->upload_button->UseVisualStyleBackColor = true;
 			this->upload_button->Click += gcnew System::EventHandler(this, &MyForm::upload_button_Click);
@@ -309,10 +330,9 @@ namespace MediaPlayerMIU
 			this->video_name->Font = (gcnew System::Drawing::Font(L"Segoe UI", 15, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->video_name->ForeColor = System::Drawing::Color::WhiteSmoke;
-			this->video_name->Location = System::Drawing::Point(16, 39);
-			this->video_name->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->video_name->Location = System::Drawing::Point(12, 32);
 			this->video_name->Name = L"video_name";
-			this->video_name->Size = System::Drawing::Size(155, 35);
+			this->video_name->Size = System::Drawing::Size(124, 28);
 			this->video_name->TabIndex = 9;
 			this->video_name->Text = L"video_name";
 			this->video_name->Click += gcnew System::EventHandler(this, &MyForm::video_name_Click);
@@ -326,8 +346,7 @@ namespace MediaPlayerMIU
 			this->skipForward_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->skipForward_button->ForeColor = System::Drawing::Color::White;
 			this->skipForward_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"skipForward_button.Image")));
-			this->skipForward_button->Location = System::Drawing::Point(1644, 121);
-			this->skipForward_button->Margin = System::Windows::Forms::Padding(4);
+			this->skipForward_button->Location = System::Drawing::Point(1341, 125);
 			this->skipForward_button->Name = L"skipForward_button";
 			this->skipForward_button->Size = System::Drawing::Size(46, 46);
 			this->skipForward_button->TabIndex = 8;
@@ -343,8 +362,7 @@ namespace MediaPlayerMIU
 			this->previous_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->previous_button->ForeColor = System::Drawing::Color::White;
 			this->previous_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"previous_button.Image")));
-			this->previous_button->Location = System::Drawing::Point(843, 125);
-			this->previous_button->Margin = System::Windows::Forms::Padding(4);
+			this->previous_button->Location = System::Drawing::Point(692, 132);
 			this->previous_button->Name = L"previous_button";
 			this->previous_button->Size = System::Drawing::Size(31, 31);
 			this->previous_button->TabIndex = 7;
@@ -360,8 +378,7 @@ namespace MediaPlayerMIU
 			this->skipBackward_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->skipBackward_button->ForeColor = System::Drawing::Color::White;
 			this->skipBackward_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"skipBackward_button.Image")));
-			this->skipBackward_button->Location = System::Drawing::Point(1576, 121);
-			this->skipBackward_button->Margin = System::Windows::Forms::Padding(4);
+			this->skipBackward_button->Location = System::Drawing::Point(1290, 125);
 			this->skipBackward_button->Name = L"skipBackward_button";
 			this->skipBackward_button->Size = System::Drawing::Size(46, 46);
 			this->skipBackward_button->TabIndex = 4;
@@ -377,8 +394,7 @@ namespace MediaPlayerMIU
 			this->next_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->next_button->ForeColor = System::Drawing::Color::White;
 			this->next_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"next_button.Image")));
-			this->next_button->Location = System::Drawing::Point(1035, 122);
-			this->next_button->Margin = System::Windows::Forms::Padding(4);
+			this->next_button->Location = System::Drawing::Point(841, 130);
 			this->next_button->Name = L"next_button";
 			this->next_button->Size = System::Drawing::Size(31, 31);
 			this->next_button->TabIndex = 2;
@@ -394,8 +410,7 @@ namespace MediaPlayerMIU
 			this->pause_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->pause_button->ForeColor = System::Drawing::Color::White;
 			this->pause_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pause_button.Image")));
-			this->pause_button->Location = System::Drawing::Point(923, 118);
-			this->pause_button->Margin = System::Windows::Forms::Padding(4);
+			this->pause_button->Location = System::Drawing::Point(752, 122);
 			this->pause_button->Name = L"pause_button";
 			this->pause_button->Size = System::Drawing::Size(54, 54);
 			this->pause_button->TabIndex = 1;
@@ -411,8 +426,7 @@ namespace MediaPlayerMIU
 			this->play_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->play_button->ForeColor = System::Drawing::Color::White;
 			this->play_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"play_button.Image")));
-			this->play_button->Location = System::Drawing::Point(923, 116);
-			this->play_button->Margin = System::Windows::Forms::Padding(4);
+			this->play_button->Location = System::Drawing::Point(752, 120);
 			this->play_button->Name = L"play_button";
 			this->play_button->Size = System::Drawing::Size(54, 54);
 			this->play_button->TabIndex = 0;
@@ -423,21 +437,18 @@ namespace MediaPlayerMIU
 			// 
 			this->track_list->BackColor = System::Drawing::SystemColors::InactiveCaption;
 			this->track_list->FormattingEnabled = true;
-			this->track_list->ItemHeight = 16;
-			this->track_list->Location = System::Drawing::Point(1609, 37);
-			this->track_list->Margin = System::Windows::Forms::Padding(4);
+			this->track_list->Location = System::Drawing::Point(1327, 30);
 			this->track_list->Name = L"track_list";
-			this->track_list->Size = System::Drawing::Size(297, 196);
+			this->track_list->Size = System::Drawing::Size(224, 160);
 			this->track_list->TabIndex = 3;
 			this->track_list->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::track_list_SelectedIndexChanged);
 			// 
 			// statusLabel
 			// 
 			this->statusLabel->AutoSize = true;
-			this->statusLabel->Location = System::Drawing::Point(60, 37);
-			this->statusLabel->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->statusLabel->Location = System::Drawing::Point(45, 30);
 			this->statusLabel->Name = L"statusLabel";
-			this->statusLabel->Size = System::Drawing::Size(44, 16);
+			this->statusLabel->Size = System::Drawing::Size(35, 13);
 			this->statusLabel->TabIndex = 4;
 			this->statusLabel->Text = L"label1";
 			// 
@@ -447,15 +458,15 @@ namespace MediaPlayerMIU
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1924, 1012);
+			this->ClientSize = System::Drawing::Size(1563, 838);
 			this->Controls->Add(this->statusLabel);
 			this->Controls->Add(this->track_list);
 			this->Controls->Add(this->function_panel);
 			this->Controls->Add(this->player);
-			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
-			this->Name = L"Media Player";
+			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Name = L"MyForm";
 			this->Text = L"Media Player";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->player))->EndInit();
@@ -481,7 +492,8 @@ namespace MediaPlayerMIU
 	}
 	private: System::Void player_Enter(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void skipBackward_button_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void skipBackward_button_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
 		double currentPosition = player->Ctlcontrols->currentPosition;     // Get the current position of the player
 
 		player->Ctlcontrols->currentPosition = currentPosition - 15;     // Set the new position
@@ -506,7 +518,9 @@ namespace MediaPlayerMIU
 		}
 
 	}
-	private: System::Void play_button_Click(System::Object^ sender, System::EventArgs^ e)
+
+	// Added function to be called anywhere in code, instead of related only to play/pause buttons.
+	private: void playAction()
 	{
 		// Toggle visibility: Show Pause button, hide Play button
 		play_button->Visible = false;
@@ -515,11 +529,10 @@ namespace MediaPlayerMIU
 		// Set the isPlaying state to true
 		player->Ctlcontrols->play();
 		isPlaying = true;
-
-
-
 	}
-	private: System::Void pause_button_Click(System::Object^ sender, System::EventArgs^ e)
+
+	// Added function to be called anywhere in code, instead of related only to play/pause buttons.
+	private: void pauseAction()
 	{
 		// Toggle visibility: Show Play button, hide Pause button
 		pause_button->Visible = false;
@@ -528,8 +541,17 @@ namespace MediaPlayerMIU
 		// Set the isPlaying state to false
 		player->Ctlcontrols->pause();
 		isPlaying = false;
-
 	}
+
+	private: System::Void play_button_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		playAction();
+	}
+	private: System::Void pause_button_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		pauseAction();
+	}
+
 	private: System::Void function_panel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 	}
 
@@ -653,6 +675,9 @@ namespace MediaPlayerMIU
 
 	private: System::Void progressBar1_Click(System::Object^ sender, System::EventArgs^ e)
 	{
+		if (!isPlaying)
+			return;
+
 		// Get the mouse position relative to the progress bar
 		System::Drawing::Point mousePosition = progressBar1->PointToClient(Cursor->Position);
 
@@ -674,24 +699,45 @@ namespace MediaPlayerMIU
 		progressBar1->Value = (int)(percentage * progressBar1->Maximum);
 	}
 
+	   /*EVEN HANDLING OF SHUFFLE
+	   
+	   */
+	private: System::Void sound_button_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
 
-		   /*EVEN HANDLING OF SHUFFLE
-		   videoList->shuffle();
-				   String^ shuffledVideo = videoList->getCurrentVideo();
-			player->Ctlcontrols->play();
-			isPlaying = true;
+	private: System::Void shuffle_button_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		if (videoList->isEmpty())
+		{
+			statusLabel->Text = L"Video List is empty...";
+			return;
+		}
 
-			if (paths != nullptr && track_list->SelectedIndex >= 0)
-			{
-				video_name->Text = files[track_list->SelectedIndex];
-			}
-			else
-			{
-				video_name->Text = "No video selected";
-			}
-		   */
+		// This function set's the current node to be at a random index.
+		int randomIndex = videoList->shuffle();
 
-	private: System::Void soundButton_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Only if this list size is greater than 1
+		if (randomIndex != -1)
+		{
+			// First pause the current video
+			pauseAction();
+
+			player->URL = videoList->getCurrentNodePath();
+			video_name->Text = videoList->getCurrentNodeName();
+
+			track_list->SelectedIndex = randomIndex;
+
+			playAction();
+		}
+		else
+			statusLabel->Text = L"Video List is only a single video...";
+		
+	}
+
+		
+
+	private: System::Void soundButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
 		if (soundBar->Visible && soundLabel->Visible) {
 			muteButton->Hide();
 			soundBar->Hide();
@@ -703,13 +749,16 @@ namespace MediaPlayerMIU
 			soundLabel->Show();
 		}
 	}
+
 	private: System::Void soundBar_Scroll(System::Object^ sender, System::EventArgs^ e) {
 		player->settings->volume = soundBar->Value;
 		soundLabel->Text = soundBar->Value.ToString();
 	}
+
 	private: System::Void soundLabel_Click(System::Object^ sender, System::EventArgs^ e) {
 
 	}
+
 	private: System::Void muteButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (soundBar->Value > 0) {
 			player->settings->volume = 0;
@@ -723,6 +772,7 @@ namespace MediaPlayerMIU
 		}
 
 	}
+
 	private: System::Void OnKeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e)
 	{
 		if (e->KeyCode == Keys::Right)

@@ -111,6 +111,7 @@ public:
     // Added a function to populate tracklist and to mantain encapsulation of the "Node" private member
     void populateTrackList(System::Windows::Forms::ListBox^ track_list);
 
-    void shuffle();
+    // This function set's the current node to be at a random index.
+    int shuffle();
 };
 
