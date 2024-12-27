@@ -145,7 +145,7 @@
   <data name="speedButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DgAACw4BQL7hQQAABAVJREFUaEPtmFuoFVUYgE+mhpVWBGpJV4UI8R5ElqAGlQ/Wi3lBEEkRDX0oIrG0
+        DAAACwwBP0AiyAAABAVJREFUaEPtmFuoFVUYgE+mhpVWBGpJV4UI8R5ElqAGlQ/Wi3lBEEkRDX0oIrG0
         h6AIkwqDvBAFFUTSg1CYdjG1AgMvYfZkWNBVu4DZRTHT75szazPO2bP3zHbOOZuYDz72Xmtm1vpnzZp1
         mY6KioqK/x398GochZNjR+M1eCG2HQZ1Fz6Hn+LfeCbDP/EzfAGnYq/e0LX4PP6EySD/wC9xG/4b+x4e
         wOOYPPcXfBaHYY9xFb6IJ9AgDPAjfBDtNslW/Ss24LGRuBTfR6+1jJO4Aa/EbmU2/o5Wakvbevb3LNI3
@@ -167,16 +167,16 @@
   </data>
   <data name="deleteButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAHfSURBVGhD7Zk7TsNQFETTgAQ7QKLAKWnZGtQJlLZYAAsC
-        NkDFp0Gy2QRSePdmiC5iwid3HKfwkU4z43ieo9DgycjIwBzN2sOqaa+qun2Z1u37tOkW3yx5uea5XHN5
-        fP16gI8Ojx2+HO6eHnqNVd3d7sxD2DfPDvmb5XNz3GJY/GeDQ53U3fnZzWIP1RcsnzZvF6sHqLsnVMMS
-        f/Ons4d9xBTrP6+1zyEeltWBioh+5L/Xp4hjQ4mjbAa74bbFUTaD3XDb4ih52M37EpNa2FBfYlILG+pL
-        TGphQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZq
-        J5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWth
-        QyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NH
-        UWthQyZqJ5NHUWthQ32JSS1r37yo7eu/1vZ6iA6KrZruEZNa7N0WG5RbdzNMarF3WuXbuaOjInt/d7Z8
-        iHZur4dkfxPlPsv7dbOdens5MjIy8kcmkw+/iM8V6UVTGAAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EAAACxABrSO9dQAAAd9JREFUaEPtmTtOw1AURNOABDtAosApadka1AmUtlgACwI2QMWnQbLZBFJ492aI
+        LmLCJ3ccp/CRTjPjeJ6j0ODJyMjAHM3aw6ppr6q6fZnW7fu06RbfLHm55rlcc3l8/XqAjw6PHb4c7p4e
+        eo1V3d3uzEPYN88O+Zvlc3PcYlj8Z4NDndTd+dnNYg/VFyyfNm8XqweouydUwxJ/86ezh33EFOs/r7XP
+        IR6W1YGKiH7kv9eniGNDiaNsBrvhtsVRNoPdcNviKHnYzfsSk1rYUF9iUgsb6ktMamFDJmonk0dRa2FD
+        Jmonk0dRa2FDJmonk0dRa2FDJmonk0dRa2FDJmonk0dRa2FDJmonk0dRa2FDJmonk0dRa2FDJmonk0dR
+        a2FDJmonk0dRa2FDJmonk0dRa2FDJmonk0dRa2FDJmonk0dRa2FDJmonk0dRa2FDJmonk0dRa2FDJmon
+        k0dRa2FDJmonk0dRa2FDJmonk0dRa2FDJmonk0dRa2FDJmonk0dRa2FDJmonk0dRa2FDJmonk0dRa2FD
+        fYlJLWvfvKjt67/W9nqIDoqtmu4Rk1rs3RYblFt3M0xqsXda5du5o6Mie393tnyIdm6vh2R/E+U+y/t1
+        s516ezkyMjLyRyaTD7+IzxXpRVMYAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="progressBarButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -943,7 +943,7 @@
         ZW0uV2luZG93cy5Gb3Jtcy5BeEhvc3QrU3RhdGUBAAAABERhdGEHAgIAAAAJAwAAAA8DAAAAtwAAAAIB
         AAAAAQAAAAAAAAAAAAAAAKIAAAABAwAACAAAAAAABQAAAAAAAADwPwMAAAAAAAUAAAAAAAAAAAAIAAIA
         AAAAAAMAAQAAAAsA//8DAAAAAAALAP//CAACAAAAAAADADIAAAALAAAACAAKAAAAbgBvAG4AZQAAAAsA
-        //8LAAAACwD//wsA//8LAAAACAACAAAAAAAIAAIAAAAAAAgAAgAAAAAACAACAAAAAAALAAAAE2sAALw+
+        AAALAAAACwD//wsA//8LAAAACAACAAAAAAAIAAIAAAAAAAgAAgAAAAAACAACAAAAAAALAAAAE2sAAOZJ
         AAAL
 </value>
   </data>

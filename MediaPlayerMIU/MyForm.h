@@ -224,7 +224,7 @@ namespace MediaPlayerMIU
 			this->function_panel->Controls->Add(this->pause_button);
 			this->function_panel->Controls->Add(this->play_button);
 			this->function_panel->Dock = System::Windows::Forms::DockStyle::Bottom;
-			this->function_panel->Location = System::Drawing::Point(0, 591);
+			this->function_panel->Location = System::Drawing::Point(0, 546);
 			this->function_panel->Name = L"function_panel";
 			this->function_panel->Size = System::Drawing::Size(1036, 169);
 			this->function_panel->TabIndex = 2;
@@ -768,7 +768,7 @@ namespace MediaPlayerMIU
 			this->speedOptions->Controls->Add(this->speed15);
 			this->speedOptions->Controls->Add(this->speed75);
 			this->speedOptions->Controls->Add(this->speed1);
-			this->speedOptions->Location = System::Drawing::Point(239, 430);
+			this->speedOptions->Location = System::Drawing::Point(239, 385);
 			this->speedOptions->Name = L"speedOptions";
 			this->speedOptions->Size = System::Drawing::Size(54, 241);
 			this->speedOptions->TabIndex = 32;
@@ -781,8 +781,7 @@ namespace MediaPlayerMIU
 			this->player->Location = System::Drawing::Point(0, 0);
 			this->player->Name = L"player";
 			this->player->OcxState = (cli::safe_cast<System::Windows::Forms::AxHost::State^>(resources->GetObject(L"player.OcxState")));
-			this->player->Padding = System::Windows::Forms::Padding(4);
-			this->player->Size = System::Drawing::Size(1036, 760);
+			this->player->Size = System::Drawing::Size(1036, 715);
 			this->player->TabIndex = 0;
 			this->player->Enter += gcnew System::EventHandler(this, &MyForm::player_Enter);
 			// 
@@ -790,7 +789,7 @@ namespace MediaPlayerMIU
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1036, 760);
+			this->ClientSize = System::Drawing::Size(1036, 715);
 			this->Controls->Add(this->speedOptions);
 			this->Controls->Add(this->front_button);
 			this->Controls->Add(this->switch_button);
