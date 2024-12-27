@@ -10,6 +10,7 @@ namespace MediaPlayerMIU
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Windows::Forms;
 
 
 	/// <summary>
@@ -1033,11 +1034,12 @@ namespace MediaPlayerMIU
 
 		}
 #pragma endregion
-	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e)
+	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) //constructorr
 	{
 		//Intialize
 		videoList = gcnew VideoList();
 
+		videoList->loadFromFile("data.dat",track_list);
 		// Assert it doesn't equal null
 		assert(videoList != nullptr);
 
@@ -1147,11 +1149,18 @@ namespace MediaPlayerMIU
 	}
 
 
-	private: System::Void skipForward_button_Click(System::Object^ sender, System::EventArgs^ e) {
-		double currentPosition = player->Ctlcontrols->currentPosition;     // Get the current position of the player
-
+private: System::Void skipForward_button_Click(System::Object^ sender, System::EventArgs^ e) {
+	double currentPosition = player->Ctlcontrols->currentPosition;     // Get the current position of the player
+	if (player->Ctlcontrols->currentPosition + 15 <= player->currentMedia->duration) {
 		player->Ctlcontrols->currentPosition = currentPosition + 15;     // Set the new position
 	}
+	else {
+		if (isLooped == false)
+			next_button_Click(sender, e);
+		else
+			player->Ctlcontrols->currentPosition = 0; //restart the video
+	}
+}
 	private: System::Void video_name_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 
@@ -1170,7 +1179,7 @@ namespace MediaPlayerMIU
 			for (int x = 0; x < files->Length; x++)
 			{
 				// Then add the video into list for implementation
-				videoList->addVideo(paths[x], files[x]); // Add URL to VideoList;
+				videoList->addVideo(paths[x], files[x],track_list); // Add URL to VideoList;
 			}
 
 			// Use the VideoList method to populate the track list
@@ -1194,6 +1203,13 @@ private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e) {
 			buttonX = Math::Max(0, Math::Min(buttonX, progressBar1->Width - progressBarButton->Width));
 			progressBarButton->Left = progressBar1->Left + buttonX;
 		}
+	}
+	else if (player->playState == WMPLib::WMPPlayState::wmppsStopped && isLooped == false) { //if video has eneded, go to next video
+		next_button_Click(sender, e);
+	}
+	else if (player->playState == WMPLib::WMPPlayState::wmppsStopped && isLooped == true) {
+		player->Ctlcontrols->currentPosition = 0; //restart the video
+		player->Ctlcontrols->play();
 	}
 
 	// Update the start and end timers
@@ -1300,11 +1316,19 @@ private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e) {
 			{
 				player->Ctlcontrols->currentPosition += 5;
 			}
-			else
+			else if (player->Ctlcontrols->currentPosition + 5 > player->currentMedia->duration)
 			{
-				//CALL NEXT HERE INSTEAD OF ENDING
-				//player->Ctlcontrols->currentPosition = player->currentMedia->duration; 
-				next_button_Click(sender, e);
+				// Check if looping is enabled
+				if (isLooped)
+				{
+					// Restart the media
+					player->Ctlcontrols->currentPosition = 0;
+				}
+				else
+				{
+					// Call the next button click handler
+					next_button_Click(sender, e);
+				}
 			}
 		}
 		else if (e->KeyCode == Keys::Left)
@@ -1572,6 +1596,7 @@ private: System::Void screenshotButton_Click(System::Object^ sender, System::Eve
 		// Clean up resources
 		delete g;
 		delete screenshot;
+		
 	}
 	catch (Exception^ ex)
 	{

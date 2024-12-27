@@ -51,6 +51,7 @@ private:
         String^ videoName; // Added this to be used to populate tracklist dynamically
         Node^ next;
         Node^ prev;
+        //int duration 
         /*
         ^ is a "handle operator".It manages references to objects that are garbage - collected by the.NET runtime
         ^ is used instead of pointers for objects in the managed heap section(which are automtically garbage collected)
@@ -70,10 +71,10 @@ public:
     // No Need For A Destructor As Managed Data Types Are Automatically Cleaned
 
     // Add a video path to the list
-    void addVideo(String^ videoPath);
+    void addVideo(String^ videoPath, System::Windows::Forms::ListBox^ track_list);
 
     // Add a video path and it's name to the list
-    void addVideo(String^ videoPath, String^ videoName);
+    void addVideo(String^ videoPath, String^ videoName, System::Windows::Forms::ListBox^ track_list);
 
     // Move to the next video
     String^ nextVideo();
@@ -116,5 +117,22 @@ public:
 
     //function to remove a video from the linked list
     void removeVideo(System::Windows::Forms::ListBox^ track_list);
+
+    //function to save the videolist in a file after every add and every remove
+    void  saveToFile(String^ filename, System::Windows::Forms::ListBox^ track_list);
+
+    //function to load the videos that were imported previously to the list
+    void loadFromFile(String^ filename, System::Windows::Forms::ListBox^ track_list);
+
+    //just for handling an error
+    bool isFileLocked();
+
+    void arrangeAlphabetically(VideoList^ videoList, System::Windows::Forms::ListBox^ track_list);
+
+    void arrangeNumerically(VideoList^ videoList, System::Windows::Forms::ListBox^ track_list);
+
+    int split(System::Collections::Generic::List<System::String^>^ videoPaths, System::Collections::Generic::List<int>^ videoDurations, int low, int high);
+
+    void quickSort(System::Collections::Generic::List<System::String^>^ videoPaths, System::Collections::Generic::List<int>^ videoDurations, int low, int high);
 };
 
