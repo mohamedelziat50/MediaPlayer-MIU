@@ -1080,7 +1080,8 @@ namespace MediaPlayerMIU
 	}
 
 private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e) {
-	if (player->playState == WMPLib::WMPPlayState::wmppsPlaying) {
+	if (player->playState == WMPLib::WMPPlayState::wmppsPlaying)
+	{
 		// Update the progress bar maximum and value
 		progressBar1->Maximum = (int)player->Ctlcontrols->currentItem->duration;
 		progressBar1->Value = (int)player->Ctlcontrols->currentPosition;
