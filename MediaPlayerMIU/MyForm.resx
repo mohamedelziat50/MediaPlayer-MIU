@@ -118,6 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="screenshotButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EQAACxEBf2RfkQAAASJJREFUSEvtlk1qAkEQhecCGowHiUuPkJCNIHrgGO9gskxygZwgvg+moCimrfkL
+        gs6Db1NTvupun9NWk+5Sr+JH/IkDhVpHQa1r/Vu8UMhEoxm9Uaj1LprqDMvqXxQyWfNYau3HSv3Kh2ps
+        vxsSafTpHKrWflcL19UGj51Cfv+jpnotfoXtyKDGs3/RSnyKONT4EE+ik0op9O/krgxKtTcyeAdvxaxm
+        I06iqTdVqdGbAEMfRdRC8Cz2pyqlOhqxU2TXqL/+diL291Y04miRv0bt+psL3wu9FY0uDX4QvhdSlVId
+        jQgS4ngZztBnCtJexP5UpUZvAqSXIEUthT8FI5X/kN+5NzHYJUHiOwV22jQUUtnR0ezTzSKiWVumfyB3
+        p6o6AxJyyQAjFoP+AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="fullScreenButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DgAACw4BQL7hQQAAASJJREFUaEPtmMFqAkEQBRfix8Ugmpt+fXIw0STH/EB8fViQ0OxMUw0j2gV1WbB4
+        C8IMOxVFUdwNf0Hf5Vr2cpBf0mstGcaLtDzKHlbyV3qNlmG8SMveF3mSN/sib/JZ9rKXQ/5ao8A7cCAJ
+        vAMHksA7cCAJvAMHksA7cCAJvAMHksA7cCAJvMPuTvOP7bAbxaecd3zYgyh2AbQrhxk5sbPZyR9pt4Ct
+        PSiKoiiKorgDXqXdcb7lyDsO3oFvnUngHfOPZ0eBd+BAEngHDiSBd+BAEngHDiSBd+BAEngHDiSBd+BA
+        EnjH/0BLO7giJ++LvP7k1GsYL9LyLHuxU9prtAzjRVqeZC/2vcxrtAzjRZa0v9ZG9mIfAO0LptdasiiK
+        x2WaLr/hcEZem6G+AAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="muteButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhMAAwAPcAAAAAAAEBAQICAgMDAwQEBAUFBQYGBgcHBwgICAkJCQoKCgsLCwwMDA0NDQ4ODg8P
@@ -942,8 +964,8 @@
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACFTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5BeEhvc3QrU3RhdGUBAAAABERhdGEHAgIAAAAJAwAAAA8DAAAAtwAAAAIB
         AAAAAQAAAAAAAAAAAAAAAKIAAAABAwAACAAAAAAABQAAAAAAAADwPwMAAAAAAAUAAAAAAAAAAAAIAAIA
-        AAAAAAMAAQAAAAsA//8DAAAAAAALAP//CAACAAAAAAADADIAAAALAAAACAAKAAAAbgBvAG4AZQAAAAsA
-        AAALAAAACwD//wsA//8LAAAACAACAAAAAAAIAAIAAAAAAAgAAgAAAAAACAACAAAAAAALAAAAE2sAAOZJ
+        AAAAAAMAAQAAAAsA//8DAAAAAAALAP//CAACAAAAAAADADIAAAALAAAACAAKAAAAZgB1AGwAbAAAAAsA
+        //8LAAAACwD//wsA//8LAP//CAACAAAAAAAIAAIAAAAAAAgAAgAAAAAACAACAAAAAAALAAAAL3IAAMNI
         AAAL
 </value>
   </data>
