@@ -10,6 +10,7 @@ namespace MediaPlayerMIU
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Windows::Forms;
 
 
 	/// <summary>
@@ -68,24 +69,6 @@ namespace MediaPlayerMIU
 	private: System::Windows::Forms::GroupBox^ volumeControlBox;
 	private: System::Windows::Forms::Button^ fullScreenButton;
 	private: System::Windows::Forms::Button^ screenshotButton;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: cli::array<String^>^ files;
 
 	public:
@@ -910,6 +893,7 @@ namespace MediaPlayerMIU
 		//Intialize
 		videoList = gcnew VideoList();
 
+		videoList->loadFromFile("data.dat",track_list);
 		// Assert it doesn't equal null
 		assert(videoList != nullptr);
 
@@ -1043,7 +1027,7 @@ private: System::Void skipForward_button_Click(System::Object^ sender, System::E
 			for (int x = 0; x < files->Length; x++)
 			{
 				// Then add the video into list for implementation
-				videoList->addVideo(paths[x], files[x]); // Add URL to VideoList;
+				videoList->addVideo(paths[x], files[x],track_list); // Add URL to VideoList;
 			}
 
 			// Use the VideoList method to populate the track list
@@ -1087,7 +1071,8 @@ private: System::Void skipForward_button_Click(System::Object^ sender, System::E
 	}
 
 private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e) {
-	if (player->playState == WMPLib::WMPPlayState::wmppsPlaying) {
+	if (player->playState == WMPLib::WMPPlayState::wmppsPlaying)
+	{
 		// Update the progress bar maximum and value
 		progressBar1->Maximum = (int)player->Ctlcontrols->currentItem->duration;
 		progressBar1->Value = (int)player->Ctlcontrols->currentPosition;
@@ -1486,12 +1471,13 @@ private: System::Void screenshotButton_Click(System::Object^ sender, System::Eve
 		// Clean up resources
 		delete g;
 		delete screenshot;
+		
 	}
 	catch (Exception^ ex)
 	{
 		MessageBox::Show("Failed to save screenshot. Error: " + ex->Message, "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 	}
 }
-
+	  
 };
 }
