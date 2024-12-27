@@ -167,18 +167,16 @@
   </data>
   <data name="deleteButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DAAACwwBP0AiyAAAAlFJREFUaEPN2b+rDXAYx/FLsUgxUPIHUFISix8pKewMDFIyMTAwyMSAZGBUUlIy
-        MUhJSX6LgUEmBvIjsSvC+1Gf+nb6dO89nud7nHe9hvt07/mce5d77zkThc3GKXzE7yl8wEnE14xd8cTc
-        k57MCYxd8VOOJ7fm70eTtw7xufE1Y5d+ytNt2M8fWWP9jTyEBv+3B/jn7sM96P9wD+newj34KLxBWY/h
-        RkbhEcq6DjcyCtdQ1nm4kVb8/tDvh+ne1w7cnNgu6zjcSEtl74OOoaz9cCMtlb0P2oeytsONtFT2Pmgb
-        ytoAN9JS2fug9ShrKdxIS2Xvg5agrPlwIy2VvQ+ah7Jm4DvckKjsvRWbsV3ae7gxUdl76x3Kew43Jip7
-        bz1DeTfhxkRl760bKO8i3Jio7L11AeVN9eKCyt5bXV6cOAg3Jip7bx1AeTvhxkRl760dKG8T3Jio7L21
-        EeUthxsTlb23lqG8hXBjorL31gKUNxM/4AaDyt7lJ2KzS5/hRoPK3uUTuvUSbjSo7F1eoFu34UaDyt7l
-        Frp1GW40qOxdLqFbZ+BGg8re5TS6dRhuNKjsXQ6hW7vhRoPK3mUXurUVbjSo7F02o1sr4UaDyt5lBbq1
-        GG40qOxdFqFbs/ALblhl7yE2Yqtr3+DGVfYevqJ7r+HGVfYeXqF7d+HGVfYe7qB7V+HGVfYerqB75+DG
-        492neOV8mLt7JyucRfeOwo1XOoLu7YUbr7QH3dsCN16p658nai6+wD2BCvHv9ByMpNV4islejBhWPNYT
-        rMKQTUz8Aa3cSNe/GHe+AAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAHfSURBVGhD7Zk7TsNQFETTgAQ7QKLAKWnZGtQJlLZYAAsC
+        NkDFp0Gy2QRSePdmiC5iwid3HKfwkU4z43ieo9DgycjIwBzN2sOqaa+qun2Z1u37tOkW3yx5uea5XHN5
+        fP16gI8Ojx2+HO6eHnqNVd3d7sxD2DfPDvmb5XNz3GJY/GeDQ53U3fnZzWIP1RcsnzZvF6sHqLsnVMMS
+        f/Ons4d9xBTrP6+1zyEeltWBioh+5L/Xp4hjQ4mjbAa74bbFUTaD3XDb4ih52M37EpNa2FBfYlILG+pL
+        TGphQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZq
+        J5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWth
+        QyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NHUWthQyZqJ5NH
+        UWthQyZqJ5NHUWthQ32JSS1r37yo7eu/1vZ6iA6KrZruEZNa7N0WG5RbdzNMarF3WuXbuaOjInt/d7Z8
+        iHZur4dkfxPlPsv7dbOdens5MjIy8kcmkw+/iM8V6UVTGAAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="progressBarButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

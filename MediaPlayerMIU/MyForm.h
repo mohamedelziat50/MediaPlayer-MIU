@@ -273,7 +273,7 @@ namespace MediaPlayerMIU
 			this->speedButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->speedButton->ForeColor = System::Drawing::Color::White;
 			this->speedButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"speedButton.Image")));
-			this->speedButton->Location = System::Drawing::Point(240, 83);
+			this->speedButton->Location = System::Drawing::Point(239, 83);
 			this->speedButton->Name = L"speedButton";
 			this->speedButton->Size = System::Drawing::Size(54, 54);
 			this->speedButton->TabIndex = 22;
@@ -284,14 +284,13 @@ namespace MediaPlayerMIU
 			// 
 			this->deleteButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
 			this->deleteButton->AutoSize = true;
-			this->deleteButton->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->deleteButton->FlatAppearance->BorderSize = 0;
 			this->deleteButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->deleteButton->ForeColor = System::Drawing::Color::White;
 			this->deleteButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"deleteButton.Image")));
-			this->deleteButton->Location = System::Drawing::Point(42, 102);
+			this->deleteButton->Location = System::Drawing::Point(137, 83);
 			this->deleteButton->Name = L"deleteButton";
-			this->deleteButton->Size = System::Drawing::Size(56, 56);
+			this->deleteButton->Size = System::Drawing::Size(54, 54);
 			this->deleteButton->TabIndex = 21;
 			this->deleteButton->UseVisualStyleBackColor = true;
 			this->deleteButton->Click += gcnew System::EventHandler(this, &MyForm::deleteButton_Click);
@@ -339,7 +338,7 @@ namespace MediaPlayerMIU
 			this->soundButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->soundButton->ForeColor = System::Drawing::Color::White;
 			this->soundButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"soundButton.Image")));
-			this->soundButton->Location = System::Drawing::Point(872, 94);
+			this->soundButton->Location = System::Drawing::Point(872, 92);
 			this->soundButton->Name = L"soundButton";
 			this->soundButton->Size = System::Drawing::Size(42, 35);
 			this->soundButton->TabIndex = 18;
@@ -437,7 +436,7 @@ namespace MediaPlayerMIU
 			this->upload_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->upload_button->ForeColor = System::Drawing::Color::White;
 			this->upload_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"upload_button.Image")));
-			this->upload_button->Location = System::Drawing::Point(959, 87);
+			this->upload_button->Location = System::Drawing::Point(959, 85);
 			this->upload_button->Name = L"upload_button";
 			this->upload_button->Size = System::Drawing::Size(46, 46);
 			this->upload_button->TabIndex = 11;
@@ -451,7 +450,7 @@ namespace MediaPlayerMIU
 			this->video_name->Font = (gcnew System::Drawing::Font(L"Segoe UI", 15, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->video_name->ForeColor = System::Drawing::Color::WhiteSmoke;
-			this->video_name->Location = System::Drawing::Point(21, 54);
+			this->video_name->Location = System::Drawing::Point(21, 48);
 			this->video_name->Name = L"video_name";
 			this->video_name->Size = System::Drawing::Size(124, 28);
 			this->video_name->TabIndex = 9;
@@ -759,6 +758,7 @@ namespace MediaPlayerMIU
 			// 
 			// speedOptions
 			// 
+			this->speedOptions->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
 			this->speedOptions->BackColor = System::Drawing::SystemColors::ActiveBorder;
 			this->speedOptions->Controls->Add(this->speed125);
 			this->speedOptions->Controls->Add(this->speed2);
