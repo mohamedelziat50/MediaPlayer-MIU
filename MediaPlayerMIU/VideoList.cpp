@@ -405,3 +405,130 @@ bool VideoList::isFileLocked()
     }
 }
 
+void VideoList::arrangeAlphabetically(VideoList^ videoList , System::Windows::Forms::ListBox^ track_list) {
+    //this is the equivalent of List<String> videoNames = new List<String>(); -> Dynamically allocated list
+    System::Collections::Generic::List<System::String^>^ videoNames; // = gcnew System::Collections::Generic::List<System::String^>(); //put all names of the linked list into a list of string datatype
+    
+    Node^ current = head; //current points to the first node in the linked list
+    if (current != nullptr) { //if list is not empty
+        do {
+            videoNames->Add(current->videoName);  // Add the video name to the list
+            current = current->next;  // Iterate
+        } while (current != head);  // Stop if we have looped back to the head
+    }
+    
+   
+    for (int i = 0; i < videoNames->Count - 1; i++) { //Alphabetical Bubble Sort 
+        for (int j = 0; j < videoNames->Count - i - 1; j++) {
+            if (System::String::Compare(videoNames[j], videoNames[j + 1]) > 0) { //this means that videoNames[j] is greater than it's next node
+                System::String^ temp = videoNames[j];
+                videoNames[j] = videoNames[j + 1];
+                videoNames[j + 1] = temp;
+            }
+        }
+    }
+
+    track_list->Items->Clear(); //empty trackList
+    for each (String^ videoName in videoNames) { //Syntax of for each in .NET framework is different than normal for each
+        //VideoName is a managed String variable that iterates through the VideoNames list
+        track_list->Items->Add(videoName); // Add sorted VideoNames list to the track list
+    }
+}
+
+void VideoList::arrangeNumerically(VideoList^ videoList, System::Windows::Forms::ListBox^ track_list) {
+    // Create a list of pairs of video names and their respective durations.
+    System::Collections::Generic::List<System::String^>^ videoPaths;
+    System::Collections::Generic::List<int>^ videoDurations;
+
+    AxWMPLib::AxWindowsMediaPlayer^ tempPlayer; 
+    
+    Node^ current = head; // current points to the first node in the linked list
+    if (current != nullptr) { // if list is not empty
+        for each (String ^ videoPath in videoPaths) {
+            tempPlayer->URL = videoPath;
+            videoDurations->Add(tempPlayer->currentMedia->duration);
+        }  
+    }
+    
+    quickSort(videoPaths, videoDurations, 0, videoDurations->Count - 1); //Arrage using quickSort
+   
+
+    track_list->Items->Clear(); // Empty the trackList
+    for each (String ^ videoPath in videoPaths) {
+        // Add sorted video names to the track list (sorted by duration)
+        track_list->Items->Add(videoPath); //add sorted videoPath to track_list
+    }
+}
+
+int VideoList::split(System::Collections::Generic::List<System::String^>^ videoPaths,
+    System::Collections::Generic::List<int>^ videoDurations,
+    int low, int high) {
+    int pivot = videoDurations[low];  // First element is the pivot
+    System::String^ pivotPath = videoPaths[low];  // Corresponding video path
+
+    int left = low + 1;  // Start from the element right after the pivot
+    int right = high;  //last element
+
+    while (true) {
+        while (left <= right && videoDurations[left] <= pivot) {
+            left++; //move left variable to right if it is smaller than pivot
+        }
+
+        while (left <= right && videoDurations[right] > pivot) {
+            right--; // Move right variable to the left if it is larger than pivot
+        }
+
+
+        if (left > right) {
+            break;
+        }
+
+        // Swap the elements
+        int tempDuration = videoDurations[left];
+        videoDurations[left] = videoDurations[right];
+        videoDurations[right] = tempDuration;
+
+        System::String^ tempPath = videoPaths[left];
+        videoPaths[left] = videoPaths[right];
+        videoPaths[right] = tempPath;
+    }
+
+    //Swap the pivot with element at the right index
+    int tempDuration = videoDurations[low]; //holding pivot
+    videoDurations[low] = videoDurations[right]; //switch pivot with right, which is currently at mid index
+    videoDurations[right] = tempDuration;
+
+    System::String^ tempPath = videoPaths[low];
+    videoPaths[low] = videoPaths[right];
+    videoPaths[right] = tempPath;
+
+    return right; //index where pivot is located
+}
+
+void VideoList::quickSort(System::Collections::Generic::List<System::String^>^ videoPaths, System::Collections::Generic::List<int>^ videoDurations, int low, int high)
+{
+    if (low < high) {
+        // pivot
+        int pivot = split(videoPaths, videoDurations, low, high);
+
+        // Recursively sort elements before and after partition
+        quickSort(videoPaths, videoDurations, low, pivot - 1);
+        quickSort(videoPaths, videoDurations, pivot + 1, high);
+    }
+}
+
+/*
+Bubble Sort for Duration (Just incase merge sort doesnt work)
+
+for (int i = 0; i < videoListWithDuration->Count - 1; i++) {
+        for (int j = 0; j < videoListWithDuration->Count - i - 1; j++) {
+            // Compare durations, not names
+            if (videoListWithDuration[j]->Item2 > videoListWithDuration[j + 1]->Item2) {
+                // Swap the entire tuple (name and duration) if out of order
+                System::Tuple<System::String^, int>^ temp = videoListWithDuration[j];
+                videoListWithDuration[j] = videoListWithDuration[j + 1];
+                videoListWithDuration[j + 1] = temp;
+            }
+        }
+    }
+*/

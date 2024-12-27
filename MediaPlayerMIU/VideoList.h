@@ -51,6 +51,7 @@ private:
         String^ videoName; // Added this to be used to populate tracklist dynamically
         Node^ next;
         Node^ prev;
+        //int duration 
         /*
         ^ is a "handle operator".It manages references to objects that are garbage - collected by the.NET runtime
         ^ is used instead of pointers for objects in the managed heap section(which are automtically garbage collected)
@@ -125,5 +126,13 @@ public:
 
     //just for handling an error
     bool isFileLocked();
+
+    void arrangeAlphabetically(VideoList^ videoList, System::Windows::Forms::ListBox^ track_list);
+
+    void arrangeNumerically(VideoList^ videoList, System::Windows::Forms::ListBox^ track_list);
+
+    int split(System::Collections::Generic::List<System::String^>^ videoPaths, System::Collections::Generic::List<int>^ videoDurations, int low, int high);
+
+    void quickSort(System::Collections::Generic::List<System::String^>^ videoPaths, System::Collections::Generic::List<int>^ videoDurations, int low, int high);
 };
 
