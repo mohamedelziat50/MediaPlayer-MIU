@@ -1,5 +1,6 @@
 #include "VideoList.h"
 #include "time.h"
+#include <algorithm>
 using namespace System;
 using namespace System::IO;
 
@@ -405,15 +406,19 @@ bool VideoList::isFileLocked()
     }
 }
 
-void VideoList::arrangeAlphabetically(VideoList^ videoList , System::Windows::Forms::ListBox^ track_list) {
+void VideoList::arrangeAlphabetically(VideoList^ videoList , System::Windows::Forms::ListBox^ track_list) 
+{
     //this is the equivalent of List<String> videoNames = new List<String>(); -> Dynamically allocated list
-    System::Collections::Generic::List<System::String^>^ videoNames; // = gcnew System::Collections::Generic::List<System::String^>(); //put all names of the linked list into a list of string datatype
+    System::Collections::Generic::List<System::String^>^ videoNames = gcnew System::Collections::Generic::List<System::String^>(); //put all names of the linked list into a list of string datatype
     
     Node^ current = head; //current points to the first node in the linked list
     if (current != nullptr) { //if list is not empty
         do {
-            videoNames->Add(current->videoName);  // Add the video name to the list
-            current = current->next;  // Iterate
+           
+                videoNames->Add(current->videoName);  // Add the video name to the list
+                current = current->next;  // Iterate
+          
+           
         } while (current != head);  // Stop if we have looped back to the head
     }
     
@@ -428,37 +433,75 @@ void VideoList::arrangeAlphabetically(VideoList^ videoList , System::Windows::Fo
         }
     }
 
-    track_list->Items->Clear(); //empty trackList
-    for each (String^ videoName in videoNames) { //Syntax of for each in .NET framework is different than normal for each
-        //VideoName is a managed String variable that iterates through the VideoNames list
-        track_list->Items->Add(videoName); // Add sorted VideoNames list to the track list
+    // Make head = null
+    current = head; //start from head
+    int index = 0;
+    if (current != nullptr) {
+        do {
+            current->videoName = videoNames[index];
+            current = current->next;  // Move to the next node.
+            index++;
+        } while (current != head);  // overwrite the linked list with the new ordered version
     }
+    //arrange the videos into another video list then remove all videos from the original video then take the arranged list to the original list
+
+    //videoList->addVideo(videoName);
+    
 }
 
+/*
 void VideoList::arrangeNumerically(VideoList^ videoList, System::Windows::Forms::ListBox^ track_list) {
     // Create a list of pairs of video names and their respective durations.
-    System::Collections::Generic::List<System::String^>^ videoPaths;
-    System::Collections::Generic::List<int>^ videoDurations;
+    System::Collections::Generic::List<System::String^>^ videoPaths = gcnew System::Collections::Generic::List<System::String^>();
+    System::Collections::Generic::List<int>^ videoDurations = gcnew System::Collections::Generic::List<int>();
 
-    AxWMPLib::AxWindowsMediaPlayer^ tempPlayer; 
+    AxWMPLib::AxWindowsMediaPlayer^ tempPlayer = gcnew AxWMPLib::AxWindowsMediaPlayer();
+
+    Node^ current = head;
+    if (current != nullptr) {
+        do {
+            videoPaths->Add(current->videoPath);
+            current = current->next;
+        } while (current != head); // Traverse the circular linked list
+    }
     
-    Node^ current = head; // current points to the first node in the linked list
     if (current != nullptr) { // if list is not empty
         for each (String ^ videoPath in videoPaths) {
             tempPlayer->URL = videoPath;
             videoDurations->Add(tempPlayer->currentMedia->duration);
         }  
     }
-    
-    quickSort(videoPaths, videoDurations, 0, videoDurations->Count - 1); //Arrage using quickSort
-   
 
-    track_list->Items->Clear(); // Empty the trackList
-    for each (String ^ videoPath in videoPaths) {
-        // Add sorted video names to the track list (sorted by duration)
-        track_list->Items->Add(videoPath); //add sorted videoPath to track_list
+    for (int i = 0; i < videoPaths->Count - 1; i++) { //Alphabetical Bubble Sort 
+        for (int j = 0; j < videoPaths->Count - i - 1; j++) {
+            if (videoDurations[j] > videoDurations[j + 1]){ 
+                int tempDuration = videoDurations[j];
+                videoDurations[j] = videoDurations[j + 1];
+                videoDurations[j + 1] = tempDuration;
+
+                // Swap corresponding video paths
+                String^ tempPath = videoPaths[j];
+                videoPaths[j] = videoPaths[j + 1];
+                videoPaths[j + 1] = tempPath;
+            }
+        }
+    }
+
+   // if (videoDurations->Count > 0) {
+     //   quickSort(videoPaths, videoDurations, 0, videoDurations->Count - 1); //Arrage using quickSort
+   // }
+
+    current = head; //start from head
+    int index = 0;
+    if (current != nullptr) {
+        do {
+            current->videoPath = videoPaths[index];
+            current = current->next;  // Move to the next node.
+            index++;
+        } while (current != head);  // overwrite the linked list with the new ordered version
     }
 }
+*/
 
 int VideoList::split(System::Collections::Generic::List<System::String^>^ videoPaths,
     System::Collections::Generic::List<int>^ videoDurations,
@@ -531,4 +574,27 @@ for (int i = 0; i < videoListWithDuration->Count - 1; i++) {
             }
         }
     }
+*/
+
+/*void VideoList::removeAllVideos()
+{
+    // If the list is already empty, do nothing
+    if (isEmpty())
+        return;
+
+    // Traverse the list and delete each node
+    Node^ temp = head;
+
+    do
+    {
+        Node^ toDelete = temp; // Keep track of the node to delete
+        temp = temp->next;     // Move to the next node
+        delete toDelete;       // Delete the current node
+    } while (temp != head);    // Stop when we circle back to the head
+
+    // Reset head, tail, and current pointers to null
+    head = nullptr;
+    tail = nullptr;
+    current = nullptr;
+}
 */
