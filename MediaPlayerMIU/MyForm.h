@@ -21,7 +21,6 @@ namespace MediaPlayerMIU
 	private:VideoList^ videoList;
 	private: bool isPlaying = false;  // Boolean to track the state (play/pause)
 	private: bool isLooped = false;
-	private: bool mainSceneVisible = true;
 	private: bool isStartButtonClicked = false;
 	private: cli::array<String^>^ paths;
 
@@ -108,8 +107,6 @@ namespace MediaPlayerMIU
 			// This makes the WMP's built-in functionality hidden
 			this->player->uiMode = L"none";  // This hides all UI elements like play/pause buttons
 
-			
-
 			// Initially, the Play button is visible and enabled, while the Pause button is hidden
 			play_button->Visible = true;
 			pause_button->Visible = false;
@@ -129,13 +126,13 @@ namespace MediaPlayerMIU
 			// Set the speed options to be invisible at first
 			volumeControlBox->Visible = false;
 
-			// Begin on libary
-			hideVideoScene();
+			// Begin with the library scene visible and video scene hidden
+			hideVideoScene(); // Ensure the video scene is hidden
+			showLibraryScene(); // Ensure the library scene is visible
 
-			// Make sure the front button is at begging
-			switch_button->Visible = true;
-			front_button->Visible = false;
-			mainSceneVisible = true;
+			// Set initial button visibility
+			switch_button->Visible = false;  // Start with the switch button invisible
+			front_button->Visible = true; // show the front button initially
 		}
 
 	protected:
@@ -282,30 +279,29 @@ namespace MediaPlayerMIU
 			// 
 			this->screenshotButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
 			this->screenshotButton->AutoSize = true;
-			this->screenshotButton->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->screenshotButton->FlatAppearance->BorderSize = 0;
 			this->screenshotButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->screenshotButton->ForeColor = System::Drawing::Color::White;
 			this->screenshotButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"screenshotButton.Image")));
-			this->screenshotButton->Location = System::Drawing::Point(11, 122);
+			this->screenshotButton->Location = System::Drawing::Point(131, 89);
 			this->screenshotButton->Name = L"screenshotButton";
-			this->screenshotButton->Size = System::Drawing::Size(36, 36);
+			this->screenshotButton->Size = System::Drawing::Size(51, 46);
 			this->screenshotButton->TabIndex = 35;
 			this->screenshotButton->UseVisualStyleBackColor = true;
 			this->screenshotButton->Click += gcnew System::EventHandler(this, &MyForm::screenshotButton_Click);
 			// 
 			// fullScreenButton
 			// 
-			this->fullScreenButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->fullScreenButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
 			this->fullScreenButton->AutoSize = true;
 			this->fullScreenButton->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->fullScreenButton->FlatAppearance->BorderSize = 0;
 			this->fullScreenButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->fullScreenButton->ForeColor = System::Drawing::Color::White;
 			this->fullScreenButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"fullScreenButton.Image")));
-			this->fullScreenButton->Location = System::Drawing::Point(52, 85);
+			this->fullScreenButton->Location = System::Drawing::Point(960, 89);
 			this->fullScreenButton->Name = L"fullScreenButton";
-			this->fullScreenButton->Size = System::Drawing::Size(56, 56);
+			this->fullScreenButton->Size = System::Drawing::Size(46, 46);
 			this->fullScreenButton->TabIndex = 34;
 			this->fullScreenButton->UseVisualStyleBackColor = true;
 			this->fullScreenButton->Click += gcnew System::EventHandler(this, &MyForm::fullScreenButton_Click);
@@ -800,13 +796,12 @@ namespace MediaPlayerMIU
 			this->switch_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->switch_button->ForeColor = System::Drawing::Color::White;
 			this->switch_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"switch_button.Image")));
-			this->switch_button->Location = System::Drawing::Point(11, 11);
+			this->switch_button->Location = System::Drawing::Point(0, 11);
 			this->switch_button->Margin = System::Windows::Forms::Padding(2);
 			this->switch_button->Name = L"switch_button";
 			this->switch_button->Size = System::Drawing::Size(46, 46);
 			this->switch_button->TabIndex = 5;
 			this->switch_button->UseVisualStyleBackColor = false;
-			this->switch_button->Visible = false;
 			this->switch_button->Click += gcnew System::EventHandler(this, &MyForm::switch_button_Click);
 			// 
 			// front_button
@@ -818,7 +813,7 @@ namespace MediaPlayerMIU
 			this->front_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->front_button->ForeColor = System::Drawing::Color::White;
 			this->front_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"front_button.Image")));
-			this->front_button->Location = System::Drawing::Point(11, 11);
+			this->front_button->Location = System::Drawing::Point(2, 11);
 			this->front_button->Margin = System::Windows::Forms::Padding(2);
 			this->front_button->Name = L"front_button";
 			this->front_button->Size = System::Drawing::Size(46, 46);
@@ -859,7 +854,6 @@ namespace MediaPlayerMIU
 			// libraryPane
 			// 
 			this->libraryPane->Controls->Add(this->library_controls_groupbox);
-			this->libraryPane->Controls->Add(this->front_button);
 			this->libraryPane->Controls->Add(this->duration_list);
 			this->libraryPane->Controls->Add(this->track_list);
 			this->libraryPane->Controls->Add(this->Duration_Button);
@@ -1011,6 +1005,7 @@ namespace MediaPlayerMIU
 			this->ClientSize = System::Drawing::Size(1036, 715);
 			this->Controls->Add(this->switch_button);
 			this->Controls->Add(this->speedOptions);
+			this->Controls->Add(this->front_button);
 			this->Controls->Add(this->statusLabel);
 			this->Controls->Add(this->function_panel);
 			this->Controls->Add(this->libraryPane);
@@ -1028,7 +1023,6 @@ namespace MediaPlayerMIU
 			this->speedOptions->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->player))->EndInit();
 			this->libraryPane->ResumeLayout(false);
-			this->libraryPane->PerformLayout();
 			this->library_controls_groupbox->ResumeLayout(false);
 			this->library_controls_groupbox->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->library_title_picture))->EndInit();
@@ -1410,8 +1404,6 @@ private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e) {
 			// Hide the function
 			if (this->function_panel != nullptr)
 				this->function_panel->Visible = false;
-
-			mainSceneVisible = false;
 		}
 
 		private: void showVideoScene()
@@ -1427,38 +1419,33 @@ private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e) {
 			// Hide the function
 			if (this->function_panel != nullptr)
 				this->function_panel->Visible = true;
-
-			mainSceneVisible = true;
 		}
 
 	private: System::Void switch_button_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		if (mainSceneVisible)
-		{
-			// Hide Video Scene
-			hideVideoScene();
-			
-			// Stop any playing video
-			if(isPlaying)
-				player->Ctlcontrols->stop();
+		// Stop any playing video
+		if (isPlaying)
+			player->Ctlcontrols->stop();
 
-			// Then switch to libary scene
-			showLibraryScene();
-		}
+		// Hide Video Scene
+		hideVideoScene();
+			
+		// Then switch to libary scene
+		showLibraryScene();
 
 		front_button->Visible = true;
 		switch_button->Visible = false;
 	}
+
 	private: System::Void front_button_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
-		if (!mainSceneVisible)
-		{
-			showVideoScene();
-			hideLibraryScene();
-		}
+		showVideoScene();
+
+		hideLibraryScene();
 
 		front_button->Visible = false;
 		switch_button->Visible = true;
+		
 	}
 
 	private: System::Void statusLabel_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1634,6 +1621,9 @@ private: System::Void screenshotButton_Click(System::Object^ sender, System::Eve
 
 		// Most importantly, start timer for a working progress bar.
 		timer->Start();
+
+		switch_button->Visible = true;
+		front_button->Visible = false;
 	}
 
 	private: System::Void start_button_Click(System::Object^ sender, System::EventArgs^ e) 
