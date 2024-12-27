@@ -1,5 +1,7 @@
 #include "VideoList.h"
 #include "time.h"
+using namespace System;
+using namespace System::IO;
 
 // Consruct an empty VideoList object
 VideoList::VideoList() : head(nullptr), current(nullptr) {} // Intialize to null
@@ -17,7 +19,7 @@ bool VideoList::isCurrentEmpty()
 }
 
 // Function to add a video to the list
-void VideoList::addVideo(String^ videoPath)
+void VideoList::addVideo(String^ videoPath, System::Windows::Forms::ListBox^ track_list)
 {
     // Create new node object that takes in the video path.
     Node^ newNode = gcnew Node(videoPath);
@@ -49,10 +51,19 @@ void VideoList::addVideo(String^ videoPath)
         head->prev = newNode;
         tail = newNode; // Update tail
     }
+    if (!isFileLocked())
+    {
+        saveToFile("data.dat",track_list);
+    }
+    else
+    {
+        Console::WriteLine("The file is locked by another process.");
+    }
+
 }
 
 // Add a video path and it's name to the list (OVER-LOADED FUNCTION)
-void  VideoList::addVideo(String^ videoPath, String^ videoName)
+void  VideoList::addVideo(String^ videoPath, String^ videoName, System::Windows::Forms::ListBox^ track_list)
 {
     // Create new node object that takes in the video path.
     Node^ newNode = gcnew Node(videoPath, videoName);
@@ -83,6 +94,15 @@ void  VideoList::addVideo(String^ videoPath, String^ videoName)
         // Set also the new tail for the head
         head->prev = newNode;
         tail = newNode; // Update tail
+    }
+
+    if (!isFileLocked())
+    {
+        saveToFile("data.dat", track_list);
+    }
+    else
+    {
+        Console::WriteLine("The file is locked by another process.");
     }
 }
 
@@ -285,6 +305,103 @@ void VideoList::removeVideo(System::Windows::Forms::ListBox^ track_list) {
     }
     else {
         populateTrackList(track_list); // Refresh the track list
+    }
+
+    if (!isFileLocked())
+    {
+        saveToFile("data.dat", track_list);
+    }
+    else
+    {
+        Console::WriteLine("The file is locked by another process.");
+    }
+
+}
+
+void VideoList::saveToFile(String^ filePath, System::Windows::Forms::ListBox^ track_list)
+{
+    FileStream^ fileStream = nullptr;
+
+    try
+    {
+        // Open or create the file with shared read access
+        fileStream = gcnew FileStream(filePath, FileMode::OpenOrCreate, FileAccess::Write, FileShare::Read);
+
+        BinaryWriter^ writer = gcnew BinaryWriter(fileStream);
+
+        // Write the size of the list (number of videos)
+        writer->Write(getSize());
+
+        // If the list is not empty, write each video to the file
+        if (!isEmpty())
+        {
+            Node^ temp = head;
+            do
+            {
+                writer->Write(temp->videoName); // Write video name
+                writer->Write(temp->videoPath); // Write video path
+                temp = temp->next;
+            } while (temp != head);
+        }
+    }
+    finally
+    {
+        if (fileStream != nullptr)
+            fileStream->Close(); // Ensure file is always closed
+    }
+    populateTrackList(track_list);
+}
+
+
+void VideoList::loadFromFile(String^ filePath, System::Windows::Forms::ListBox^ track_list)
+{
+    if (!File::Exists(filePath))
+        return; // Do nothing if the file doesn't exist
+
+    FileStream^ fileStream = nullptr;
+
+    try
+    {
+        // Open the file with shared read access
+        fileStream = gcnew FileStream(filePath, FileMode::Open, FileAccess::Read, FileShare::Read);
+
+        BinaryReader^ reader = gcnew BinaryReader(fileStream);
+
+        // Read the number of videos in the list
+        int videoCount = reader->ReadInt32();
+
+        // Clear the current list
+        head = nullptr;
+        tail = nullptr;
+        current = nullptr;
+
+        // Read and add each video to the list
+        for (int i = 0; i < videoCount; i++)
+        {
+            String^ videoName = reader->ReadString();
+            String^ videoPath = reader->ReadString();
+            addVideo(videoPath, videoName,track_list);
+        }
+    }
+    finally
+    {
+        if (fileStream != nullptr)
+            fileStream->Close(); // Ensure file is always closed
+    }
+    populateTrackList(track_list);
+}
+
+bool VideoList::isFileLocked()
+{
+    try
+    {
+        FileStream^ fs = gcnew FileStream("data.dat", FileMode::Open, FileAccess::Read, FileShare::None);
+        fs->Close();
+        return false; // File is not locked
+    }
+    catch (IOException^)
+    {
+        return true; // File is locked
     }
 }
 
