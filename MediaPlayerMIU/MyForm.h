@@ -241,7 +241,7 @@ namespace MediaPlayerMIU
 			// 
 			// volumeControlBox
 			// 
-			this->volumeControlBox->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->volumeControlBox->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
 			this->volumeControlBox->BackColor = System::Drawing::SystemColors::ActiveBorder;
 			this->volumeControlBox->Controls->Add(this->muteButton);
 			this->volumeControlBox->Controls->Add(this->soundBar);
