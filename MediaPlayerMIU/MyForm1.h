@@ -130,6 +130,7 @@ namespace MediaPlayerMIU {
 			this->track_list->Name = L"track_list";
 			this->track_list->Size = System::Drawing::Size(324, 316);
 			this->track_list->TabIndex = 10;
+			this->track_list->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm1::track_list_SelectedIndexChanged);
 			// 
 			// Duration_Button
 			// 
@@ -206,6 +207,8 @@ namespace MediaPlayerMIU {
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 private: System::Void label1_Click_1(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void track_list_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

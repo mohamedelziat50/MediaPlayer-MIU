@@ -887,6 +887,7 @@ namespace MediaPlayerMIU
 			this->duration_list->Name = L"duration_list";
 			this->duration_list->Size = System::Drawing::Size(311, 316);
 			this->duration_list->TabIndex = 11;
+			this->duration_list->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::duration_list_SelectedIndexChanged);
 			// 
 			// track_list
 			// 
@@ -897,6 +898,7 @@ namespace MediaPlayerMIU
 			this->track_list->Name = L"track_list";
 			this->track_list->Size = System::Drawing::Size(324, 316);
 			this->track_list->TabIndex = 10;
+			this->track_list->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::track_list_SelectedIndexChanged_1);
 			// 
 			// Duration_Button
 			// 
@@ -1127,41 +1129,6 @@ namespace MediaPlayerMIU
 
 			// Use the VideoList method to populate the track list
 			videoList->populateTrackList(track_list);
-		}
-	}
-
-	private: System::Void track_list_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e)
-	{
-		// To make code more readable
-		int selectedIndex = track_list->SelectedIndex;
-
-		// Simplified it + now only the videoList's size should be checked.
-		if (selectedIndex >= 0 && selectedIndex < videoList->getSize())
-		{
-			// Set the current node in VideoList to match the selected track
-			videoList->setCurrentNode(selectedIndex);
-
-			// Update the player's URL to the currently selected video's path
-			player->URL = videoList->getCurrentNodePath();
-
-			// Start the video
-			player->Ctlcontrols->play();
-
-			// Set the video name label to be the video's name through the "files" array that holds video names
-			video_name->Text = videoList->getCurrentNodeName();
-
-			// Switch Icon for pause and play
-			play_button->Visible = false;
-			pause_button->Visible = true;
-
-			// Set the isPlaying flag to be true
-			isPlaying = true;
-
-			// Switch status label for design
-			statusLabel->Text = "Playing...";
-
-			// Most importantly, start timer for a working progress bar.
-			timer->Start();
 		}
 	}
 
@@ -1571,5 +1538,45 @@ private: System::Void screenshotButton_Click(System::Object^ sender, System::Eve
 	}
 }
 
+	private: System::Void track_list_SelectedIndexChanged_1(System::Object^ sender, System::EventArgs^ e) 
+	{
+		// To make code more readable
+		int selectedIndex = track_list->SelectedIndex;
+
+		// Simplified it + now only the videoList's size should be checked.
+		if (selectedIndex >= 0 && selectedIndex < videoList->getSize())
+		{
+			// Added these to play immediatly on the video scene.
+			hideLibraryScene();
+			showVideoScene();
+
+			// Set the current node in VideoList to match the selected track
+			videoList->setCurrentNode(selectedIndex);
+
+			// Update the player's URL to the currently selected video's path
+			player->URL = videoList->getCurrentNodePath();
+
+			// Start the video
+			player->Ctlcontrols->play();
+
+			// Set the video name label to be the video's name through the "files" array that holds video names
+			video_name->Text = videoList->getCurrentNodeName();
+
+			// Switch Icon for pause and play
+			play_button->Visible = false;
+			pause_button->Visible = true;
+
+			// Set the isPlaying flag to be true
+			isPlaying = true;
+
+			// Switch status label for design
+			statusLabel->Text = "Playing...";
+
+			// Most importantly, start timer for a working progress bar.
+			timer->Start();
+		}
+	}
+	private: System::Void duration_list_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
 };
 }
