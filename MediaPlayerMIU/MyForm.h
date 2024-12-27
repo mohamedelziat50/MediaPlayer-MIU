@@ -232,7 +232,7 @@ namespace MediaPlayerMIU
 			// 
 			// no_repeat_button
 			// 
-			this->no_repeat_button->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->no_repeat_button->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
 			this->no_repeat_button->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->no_repeat_button->BackColor = System::Drawing::Color::DimGray;
 			this->no_repeat_button->FlatAppearance->BorderSize = 0;
@@ -249,7 +249,7 @@ namespace MediaPlayerMIU
 			// 
 			// repeatButton
 			// 
-			this->repeatButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->repeatButton->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
 			this->repeatButton->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->repeatButton->BackColor = System::Drawing::Color::DimGray;
 			this->repeatButton->FlatAppearance->BorderSize = 0;
@@ -266,7 +266,7 @@ namespace MediaPlayerMIU
 			// 
 			// speedButton
 			// 
-			this->speedButton->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
+			this->speedButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
 			this->speedButton->AutoSize = true;
 			this->speedButton->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->speedButton->FlatAppearance->BorderSize = 0;
@@ -282,7 +282,7 @@ namespace MediaPlayerMIU
 			// 
 			// deleteButton
 			// 
-			this->deleteButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
+			this->deleteButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
 			this->deleteButton->AutoSize = true;
 			this->deleteButton->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->deleteButton->FlatAppearance->BorderSize = 0;
@@ -332,7 +332,7 @@ namespace MediaPlayerMIU
 			// 
 			// soundButton
 			// 
-			this->soundButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->soundButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
 			this->soundButton->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->soundButton->BackColor = System::Drawing::Color::Transparent;
 			this->soundButton->FlatAppearance->BorderSize = 0;
@@ -376,7 +376,7 @@ namespace MediaPlayerMIU
 			// 
 			// shuffle_button
 			// 
-			this->shuffle_button->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
+			this->shuffle_button->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
 			this->shuffle_button->AutoSize = true;
 			this->shuffle_button->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->shuffle_button->FlatAppearance->BorderSize = 0;
@@ -446,7 +446,7 @@ namespace MediaPlayerMIU
 			// 
 			// video_name
 			// 
-			this->video_name->Anchor = System::Windows::Forms::AnchorStyles::Left;
+			this->video_name->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
 			this->video_name->AutoSize = true;
 			this->video_name->Font = (gcnew System::Drawing::Font(L"Segoe UI", 15, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
