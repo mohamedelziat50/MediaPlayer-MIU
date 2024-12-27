@@ -695,6 +695,7 @@ namespace MediaPlayerMIU
 			// 
 			// track_list
 			// 
+			this->track_list->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->track_list->BackColor = System::Drawing::SystemColors::InactiveCaption;
 			this->track_list->FormattingEnabled = true;
 			this->track_list->Location = System::Drawing::Point(823, 28);
@@ -719,8 +720,8 @@ namespace MediaPlayerMIU
 			// 
 			// switch_button
 			// 
-			this->switch_button->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
 			this->switch_button->AutoSize = true;
+			this->switch_button->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->switch_button->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->switch_button->FlatAppearance->BorderSize = 0;
 			this->switch_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
@@ -736,8 +737,8 @@ namespace MediaPlayerMIU
 			// 
 			// front_button
 			// 
-			this->front_button->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
 			this->front_button->AutoSize = true;
+			this->front_button->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
 			this->front_button->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->front_button->FlatAppearance->BorderSize = 0;
 			this->front_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
