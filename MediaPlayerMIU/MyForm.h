@@ -22,6 +22,7 @@ namespace MediaPlayerMIU
 	private: bool isPlaying = false;  // Boolean to track the state (play/pause)
 	private: bool isLooped = false;
 	private: bool mainSceneVisible = true;
+	private: bool isStartButtonClicked = false;
 	private: cli::array<String^>^ paths;
 
 	private: System::Windows::Forms::Label^ statusLabel;
@@ -43,7 +44,7 @@ namespace MediaPlayerMIU
 	private: System::Windows::Forms::Button^ switch_button;
 	private: System::Windows::Forms::Button^ front_button;
 	private: int previousVolume = 50; //to store volume value
-	private: System::Windows::Forms::Button^ deleteButton;
+
 	private: System::Windows::Forms::Button^ speedButton;
 	private: System::Windows::Forms::Button^ speed2;
 	private: System::Windows::Forms::Button^ speed175;
@@ -76,6 +77,9 @@ namespace MediaPlayerMIU
 	private: System::Windows::Forms::PictureBox^ library_title_picture;
 	private: System::Windows::Forms::PictureBox^ mainBackground;
 	private: System::Windows::Forms::PictureBox^ sideBackground;
+	private: System::Windows::Forms::Button^ deleteButton;
+	private: System::Windows::Forms::GroupBox^ library_controls_groupbox;
+	private: System::Windows::Forms::Button^ start_button;
 
 
 
@@ -129,7 +133,9 @@ namespace MediaPlayerMIU
 			hideVideoScene();
 
 			// Make sure the front button is at begging
-			front_button->Visible = true;
+			switch_button->Visible = true;
+			front_button->Visible = false;
+			mainSceneVisible = true;
 		}
 
 	protected:
@@ -191,14 +197,12 @@ namespace MediaPlayerMIU
 			this->no_repeat_button = (gcnew System::Windows::Forms::Button());
 			this->repeatButton = (gcnew System::Windows::Forms::Button());
 			this->speedButton = (gcnew System::Windows::Forms::Button());
-			this->deleteButton = (gcnew System::Windows::Forms::Button());
 			this->progressBarButton = (gcnew System::Windows::Forms::Button());
 			this->soundButton = (gcnew System::Windows::Forms::Button());
 			this->shuffle_button = (gcnew System::Windows::Forms::Button());
 			this->endtimer = (gcnew System::Windows::Forms::Label());
 			this->starttimer = (gcnew System::Windows::Forms::Label());
 			this->progressBar1 = (gcnew System::Windows::Forms::ProgressBar());
-			this->upload_button = (gcnew System::Windows::Forms::Button());
 			this->video_name = (gcnew System::Windows::Forms::Label());
 			this->skipForward_button = (gcnew System::Windows::Forms::Button());
 			this->previous_button = (gcnew System::Windows::Forms::Button());
@@ -206,6 +210,7 @@ namespace MediaPlayerMIU
 			this->next_button = (gcnew System::Windows::Forms::Button());
 			this->pause_button = (gcnew System::Windows::Forms::Button());
 			this->play_button = (gcnew System::Windows::Forms::Button());
+			this->upload_button = (gcnew System::Windows::Forms::Button());
 			this->speed25 = (gcnew System::Windows::Forms::Button());
 			this->speed5 = (gcnew System::Windows::Forms::Button());
 			this->speed75 = (gcnew System::Windows::Forms::Button());
@@ -221,6 +226,9 @@ namespace MediaPlayerMIU
 			this->speedOptions = (gcnew System::Windows::Forms::GroupBox());
 			this->player = (gcnew AxWMPLib::AxWindowsMediaPlayer());
 			this->libraryPane = (gcnew System::Windows::Forms::Panel());
+			this->library_controls_groupbox = (gcnew System::Windows::Forms::GroupBox());
+			this->start_button = (gcnew System::Windows::Forms::Button());
+			this->deleteButton = (gcnew System::Windows::Forms::Button());
 			this->duration_list = (gcnew System::Windows::Forms::ListBox());
 			this->track_list = (gcnew System::Windows::Forms::ListBox());
 			this->Duration_Button = (gcnew System::Windows::Forms::Button());
@@ -234,6 +242,7 @@ namespace MediaPlayerMIU
 			this->speedOptions->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->player))->BeginInit();
 			this->libraryPane->SuspendLayout();
+			this->library_controls_groupbox->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->library_title_picture))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->mainBackground))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sideBackground))->BeginInit();
@@ -249,14 +258,12 @@ namespace MediaPlayerMIU
 			this->function_panel->Controls->Add(this->no_repeat_button);
 			this->function_panel->Controls->Add(this->repeatButton);
 			this->function_panel->Controls->Add(this->speedButton);
-			this->function_panel->Controls->Add(this->deleteButton);
 			this->function_panel->Controls->Add(this->progressBarButton);
 			this->function_panel->Controls->Add(this->soundButton);
 			this->function_panel->Controls->Add(this->shuffle_button);
 			this->function_panel->Controls->Add(this->endtimer);
 			this->function_panel->Controls->Add(this->starttimer);
 			this->function_panel->Controls->Add(this->progressBar1);
-			this->function_panel->Controls->Add(this->upload_button);
 			this->function_panel->Controls->Add(this->video_name);
 			this->function_panel->Controls->Add(this->skipForward_button);
 			this->function_panel->Controls->Add(this->previous_button);
@@ -413,21 +420,6 @@ namespace MediaPlayerMIU
 			this->speedButton->UseVisualStyleBackColor = true;
 			this->speedButton->Click += gcnew System::EventHandler(this, &MyForm::speedButton_Click);
 			// 
-			// deleteButton
-			// 
-			this->deleteButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
-			this->deleteButton->AutoSize = true;
-			this->deleteButton->FlatAppearance->BorderSize = 0;
-			this->deleteButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->deleteButton->ForeColor = System::Drawing::Color::White;
-			this->deleteButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"deleteButton.Image")));
-			this->deleteButton->Location = System::Drawing::Point(137, 88);
-			this->deleteButton->Name = L"deleteButton";
-			this->deleteButton->Size = System::Drawing::Size(54, 54);
-			this->deleteButton->TabIndex = 21;
-			this->deleteButton->UseVisualStyleBackColor = true;
-			this->deleteButton->Click += gcnew System::EventHandler(this, &MyForm::deleteButton_Click);
-			// 
 			// progressBarButton
 			// 
 			this->progressBarButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
@@ -514,22 +506,6 @@ namespace MediaPlayerMIU
 			this->progressBar1->Size = System::Drawing::Size(867, 10);
 			this->progressBar1->TabIndex = 12;
 			this->progressBar1->Click += gcnew System::EventHandler(this, &MyForm::progressBar1_Click);
-			// 
-			// upload_button
-			// 
-			this->upload_button->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
-			this->upload_button->AutoSize = true;
-			this->upload_button->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
-			this->upload_button->FlatAppearance->BorderSize = 0;
-			this->upload_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->upload_button->ForeColor = System::Drawing::Color::White;
-			this->upload_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"upload_button.Image")));
-			this->upload_button->Location = System::Drawing::Point(958, 90);
-			this->upload_button->Name = L"upload_button";
-			this->upload_button->Size = System::Drawing::Size(46, 46);
-			this->upload_button->TabIndex = 11;
-			this->upload_button->UseVisualStyleBackColor = true;
-			this->upload_button->Click += gcnew System::EventHandler(this, &MyForm::upload_button_Click);
 			// 
 			// video_name
 			// 
@@ -640,6 +616,22 @@ namespace MediaPlayerMIU
 			this->play_button->TabIndex = 0;
 			this->play_button->UseVisualStyleBackColor = true;
 			this->play_button->Click += gcnew System::EventHandler(this, &MyForm::play_button_Click);
+			// 
+			// upload_button
+			// 
+			this->upload_button->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
+			this->upload_button->AutoSize = true;
+			this->upload_button->Cursor = System::Windows::Forms::Cursors::Default;
+			this->upload_button->FlatAppearance->BorderSize = 0;
+			this->upload_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->upload_button->ForeColor = System::Drawing::Color::White;
+			this->upload_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"upload_button.Image")));
+			this->upload_button->Location = System::Drawing::Point(161, 10);
+			this->upload_button->Name = L"upload_button";
+			this->upload_button->Size = System::Drawing::Size(46, 56);
+			this->upload_button->TabIndex = 11;
+			this->upload_button->UseVisualStyleBackColor = true;
+			this->upload_button->Click += gcnew System::EventHandler(this, &MyForm::upload_button_Click);
 			// 
 			// speed25
 			// 
@@ -814,6 +806,7 @@ namespace MediaPlayerMIU
 			this->switch_button->Size = System::Drawing::Size(46, 46);
 			this->switch_button->TabIndex = 5;
 			this->switch_button->UseVisualStyleBackColor = false;
+			this->switch_button->Visible = false;
 			this->switch_button->Click += gcnew System::EventHandler(this, &MyForm::switch_button_Click);
 			// 
 			// front_button
@@ -825,7 +818,7 @@ namespace MediaPlayerMIU
 			this->front_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->front_button->ForeColor = System::Drawing::Color::White;
 			this->front_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"front_button.Image")));
-			this->front_button->Location = System::Drawing::Point(11, 61);
+			this->front_button->Location = System::Drawing::Point(11, 11);
 			this->front_button->Margin = System::Windows::Forms::Padding(2);
 			this->front_button->Name = L"front_button";
 			this->front_button->Size = System::Drawing::Size(46, 46);
@@ -865,6 +858,8 @@ namespace MediaPlayerMIU
 			// 
 			// libraryPane
 			// 
+			this->libraryPane->Controls->Add(this->library_controls_groupbox);
+			this->libraryPane->Controls->Add(this->front_button);
 			this->libraryPane->Controls->Add(this->duration_list);
 			this->libraryPane->Controls->Add(this->track_list);
 			this->libraryPane->Controls->Add(this->Duration_Button);
@@ -878,14 +873,60 @@ namespace MediaPlayerMIU
 			this->libraryPane->Size = System::Drawing::Size(1036, 715);
 			this->libraryPane->TabIndex = 33;
 			// 
+			// library_controls_groupbox
+			// 
+			this->library_controls_groupbox->Anchor = System::Windows::Forms::AnchorStyles::Bottom;
+			this->library_controls_groupbox->Controls->Add(this->start_button);
+			this->library_controls_groupbox->Controls->Add(this->upload_button);
+			this->library_controls_groupbox->Controls->Add(this->deleteButton);
+			this->library_controls_groupbox->Location = System::Drawing::Point(477, 594);
+			this->library_controls_groupbox->Name = L"library_controls_groupbox";
+			this->library_controls_groupbox->Size = System::Drawing::Size(224, 79);
+			this->library_controls_groupbox->TabIndex = 22;
+			this->library_controls_groupbox->TabStop = false;
+			this->library_controls_groupbox->Enter += gcnew System::EventHandler(this, &MyForm::library_controls_groupbox_Enter);
+			// 
+			// start_button
+			// 
+			this->start_button->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->start_button->AutoSize = true;
+			this->start_button->FlatAppearance->BorderSize = 0;
+			this->start_button->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->start_button->ForeColor = System::Drawing::Color::White;
+			this->start_button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"start_button.Image")));
+			this->start_button->Location = System::Drawing::Point(88, 10);
+			this->start_button->Name = L"start_button";
+			this->start_button->Size = System::Drawing::Size(50, 56);
+			this->start_button->TabIndex = 22;
+			this->start_button->UseVisualStyleBackColor = true;
+			this->start_button->Click += gcnew System::EventHandler(this, &MyForm::start_button_Click);
+			// 
+			// deleteButton
+			// 
+			this->deleteButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Left));
+			this->deleteButton->AutoSize = true;
+			this->deleteButton->FlatAppearance->BorderSize = 0;
+			this->deleteButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->deleteButton->ForeColor = System::Drawing::Color::White;
+			this->deleteButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"deleteButton.Image")));
+			this->deleteButton->Location = System::Drawing::Point(15, 10);
+			this->deleteButton->Name = L"deleteButton";
+			this->deleteButton->Size = System::Drawing::Size(46, 56);
+			this->deleteButton->TabIndex = 21;
+			this->deleteButton->UseVisualStyleBackColor = true;
+			this->deleteButton->Click += gcnew System::EventHandler(this, &MyForm::deleteButton_Click);
+			// 
 			// duration_list
 			// 
 			this->duration_list->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom));
 			this->duration_list->BackColor = System::Drawing::SystemColors::InactiveCaption;
+			this->duration_list->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->duration_list->FormattingEnabled = true;
+			this->duration_list->ItemHeight = 21;
 			this->duration_list->Location = System::Drawing::Point(588, 247);
 			this->duration_list->Name = L"duration_list";
-			this->duration_list->Size = System::Drawing::Size(311, 316);
+			this->duration_list->Size = System::Drawing::Size(311, 298);
 			this->duration_list->TabIndex = 11;
 			this->duration_list->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::duration_list_SelectedIndexChanged);
 			// 
@@ -893,10 +934,13 @@ namespace MediaPlayerMIU
 			// 
 			this->track_list->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom));
 			this->track_list->BackColor = System::Drawing::SystemColors::InactiveCaption;
+			this->track_list->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
 			this->track_list->FormattingEnabled = true;
+			this->track_list->ItemHeight = 21;
 			this->track_list->Location = System::Drawing::Point(270, 247);
 			this->track_list->Name = L"track_list";
-			this->track_list->Size = System::Drawing::Size(324, 316);
+			this->track_list->Size = System::Drawing::Size(324, 298);
 			this->track_list->TabIndex = 10;
 			this->track_list->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::track_list_SelectedIndexChanged_1);
 			// 
@@ -966,7 +1010,6 @@ namespace MediaPlayerMIU
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1036, 715);
 			this->Controls->Add(this->switch_button);
-			this->Controls->Add(this->front_button);
 			this->Controls->Add(this->speedOptions);
 			this->Controls->Add(this->statusLabel);
 			this->Controls->Add(this->function_panel);
@@ -985,6 +1028,9 @@ namespace MediaPlayerMIU
 			this->speedOptions->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->player))->EndInit();
 			this->libraryPane->ResumeLayout(false);
+			this->libraryPane->PerformLayout();
+			this->library_controls_groupbox->ResumeLayout(false);
+			this->library_controls_groupbox->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->library_title_picture))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->mainBackground))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sideBackground))->EndInit();
@@ -1031,6 +1077,9 @@ namespace MediaPlayerMIU
 			// Update the ListBox's selected index to reflect the new current node
 			int newIndex = videoList->getCurrentNodeIndex();
 			track_list->SelectedIndex = newIndex;
+
+			// Then start the video
+			startSelectedVideo();
 
 			// Optionally, start playing the new video
 			// mediaPlayer->URL = nextVideoPath; // Replace with your media player logic
@@ -1093,6 +1142,9 @@ namespace MediaPlayerMIU
 				// Update the ListBox's selected index to reflect the new current node
 				int newIndex = videoList->getCurrentNodeIndex();
 				track_list->SelectedIndex = newIndex;
+
+				// Start
+				startSelectedVideo();
 
 				// Optionally, start playing the new video
 				// mediaPlayer->URL = nextVideoPath; // Replace with your media player logic
@@ -1392,8 +1444,10 @@ private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e) {
 
 			// Then switch to libary scene
 			showLibraryScene();
-
 		}
+
+		front_button->Visible = true;
+		switch_button->Visible = false;
 	}
 	private: System::Void front_button_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
@@ -1402,6 +1456,9 @@ private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e) {
 			showVideoScene();
 			hideLibraryScene();
 		}
+
+		front_button->Visible = false;
+		switch_button->Visible = true;
 	}
 
 	private: System::Void statusLabel_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1412,9 +1469,6 @@ private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e) {
 			pauseAction();
 			statusLabel->Text = "Empty";
 		}
-		next_button_Click(sender, e);
-	
-	
 	
 	}
 
@@ -1543,40 +1597,56 @@ private: System::Void screenshotButton_Click(System::Object^ sender, System::Eve
 		// To make code more readable
 		int selectedIndex = track_list->SelectedIndex;
 
-		// Simplified it + now only the videoList's size should be checked.
 		if (selectedIndex >= 0 && selectedIndex < videoList->getSize())
 		{
-			// Added these to play immediatly on the video scene.
-			hideLibraryScene();
-			showVideoScene();
-
 			// Set the current node in VideoList to match the selected track
 			videoList->setCurrentNode(selectedIndex);
-
-			// Update the player's URL to the currently selected video's path
-			player->URL = videoList->getCurrentNodePath();
-
-			// Start the video
-			player->Ctlcontrols->play();
-
-			// Set the video name label to be the video's name through the "files" array that holds video names
-			video_name->Text = videoList->getCurrentNodeName();
-
-			// Switch Icon for pause and play
-			play_button->Visible = false;
-			pause_button->Visible = true;
-
-			// Set the isPlaying flag to be true
-			isPlaying = true;
-
-			// Switch status label for design
-			statusLabel->Text = "Playing...";
-
-			// Most importantly, start timer for a working progress bar.
-			timer->Start();
 		}
 	}
+
 	private: System::Void duration_list_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void library_controls_groupbox_Enter(System::Object^ sender, System::EventArgs^ e)
+	{
+
+	}
+
+	private: void startSelectedVideo()
+	{
+		// Update the player's URL to the currently selected video's path
+		player->URL = videoList->getCurrentNodePath();
+
+		// Start the video
+		player->Ctlcontrols->play();
+
+		// Set the video name label to be the video's name through the "files" array that holds video names
+		video_name->Text = videoList->getCurrentNodeName();
+
+		// Switch Icon for pause and play
+		play_button->Visible = false;
+		pause_button->Visible = true;
+
+		// Set the isPlaying flag to be true
+		isPlaying = true;
+
+		// Switch status label for design
+		statusLabel->Text = "Playing...";
+
+		// Most importantly, start timer for a working progress bar.
+		timer->Start();
+	}
+
+	private: System::Void start_button_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		isStartButtonClicked = true;
+
+		// Added these to play immediatly on the video scene.
+		hideLibraryScene();
+		showVideoScene();
+
+		startSelectedVideo();
+
+		isStartButtonClicked = false;
 	}
 };
 }
