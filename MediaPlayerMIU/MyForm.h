@@ -880,8 +880,7 @@ namespace MediaPlayerMIU
 			// 
 			// duration_list
 			// 
-			this->duration_list->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left));
+			this->duration_list->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom));
 			this->duration_list->BackColor = System::Drawing::SystemColors::InactiveCaption;
 			this->duration_list->FormattingEnabled = true;
 			this->duration_list->Location = System::Drawing::Point(588, 247);
@@ -891,8 +890,7 @@ namespace MediaPlayerMIU
 			// 
 			// track_list
 			// 
-			this->track_list->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Right));
+			this->track_list->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom));
 			this->track_list->BackColor = System::Drawing::SystemColors::InactiveCaption;
 			this->track_list->FormattingEnabled = true;
 			this->track_list->Location = System::Drawing::Point(270, 247);
@@ -902,11 +900,12 @@ namespace MediaPlayerMIU
 			// 
 			// Duration_Button
 			// 
+			this->Duration_Button->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->Duration_Button->Font = (gcnew System::Drawing::Font(L"Harrington", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Duration_Button->ForeColor = System::Drawing::Color::Transparent;
 			this->Duration_Button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"Duration_Button.Image")));
-			this->Duration_Button->Location = System::Drawing::Point(638, 170);
+			this->Duration_Button->Location = System::Drawing::Point(652, 170);
 			this->Duration_Button->Name = L"Duration_Button";
 			this->Duration_Button->Size = System::Drawing::Size(148, 47);
 			this->Duration_Button->TabIndex = 9;
@@ -915,7 +914,7 @@ namespace MediaPlayerMIU
 			// 
 			// Title_Button
 			// 
-			this->Title_Button->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->Title_Button->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->Title_Button->Font = (gcnew System::Drawing::Font(L"Harrington", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->Title_Button->ForeColor = System::Drawing::Color::Transparent;
