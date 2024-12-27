@@ -129,8 +129,6 @@ public:
 
     void arrangeAlphabetically(VideoList^ videoList, System::Windows::Forms::ListBox^ track_list);
 
-    void arrangeNumerically(VideoList^ videoList, System::Windows::Forms::ListBox^ track_list);
-
     int split(System::Collections::Generic::List<System::String^>^ videoPaths, System::Collections::Generic::List<int>^ videoDurations, int low, int high);
 
     void quickSort(System::Collections::Generic::List<System::String^>^ videoPaths, System::Collections::Generic::List<int>^ videoDurations, int low, int high);

@@ -70,9 +70,9 @@ namespace MediaPlayerMIU
 	private: System::Windows::Forms::Button^ fullScreenButton;
 	private: System::Windows::Forms::Button^ screenshotButton;
 	private: System::Windows::Forms::Panel^ libraryPane;
-	private: System::Windows::Forms::ListBox^ duration_list;
+
 	private: System::Windows::Forms::ListBox^ track_list;
-	private: System::Windows::Forms::Button^ Duration_Button;
+
 	private: System::Windows::Forms::Button^ Title_Button;
 	private: System::Windows::Forms::PictureBox^ library_title_picture;
 	private: System::Windows::Forms::PictureBox^ mainBackground;
@@ -227,9 +227,7 @@ namespace MediaPlayerMIU
 			this->library_controls_groupbox = (gcnew System::Windows::Forms::GroupBox());
 			this->start_button = (gcnew System::Windows::Forms::Button());
 			this->deleteButton = (gcnew System::Windows::Forms::Button());
-			this->duration_list = (gcnew System::Windows::Forms::ListBox());
 			this->track_list = (gcnew System::Windows::Forms::ListBox());
-			this->Duration_Button = (gcnew System::Windows::Forms::Button());
 			this->Title_Button = (gcnew System::Windows::Forms::Button());
 			this->library_title_picture = (gcnew System::Windows::Forms::PictureBox());
 			this->mainBackground = (gcnew System::Windows::Forms::PictureBox());
@@ -855,9 +853,7 @@ namespace MediaPlayerMIU
 			// libraryPane
 			// 
 			this->libraryPane->Controls->Add(this->library_controls_groupbox);
-			this->libraryPane->Controls->Add(this->duration_list);
 			this->libraryPane->Controls->Add(this->track_list);
-			this->libraryPane->Controls->Add(this->Duration_Button);
 			this->libraryPane->Controls->Add(this->Title_Button);
 			this->libraryPane->Controls->Add(this->library_title_picture);
 			this->libraryPane->Controls->Add(this->mainBackground);
@@ -911,20 +907,6 @@ namespace MediaPlayerMIU
 			this->deleteButton->UseVisualStyleBackColor = true;
 			this->deleteButton->Click += gcnew System::EventHandler(this, &MyForm::deleteButton_Click);
 			// 
-			// duration_list
-			// 
-			this->duration_list->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom));
-			this->duration_list->BackColor = System::Drawing::SystemColors::InactiveCaption;
-			this->duration_list->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->duration_list->FormattingEnabled = true;
-			this->duration_list->ItemHeight = 21;
-			this->duration_list->Location = System::Drawing::Point(588, 247);
-			this->duration_list->Name = L"duration_list";
-			this->duration_list->Size = System::Drawing::Size(311, 298);
-			this->duration_list->TabIndex = 11;
-			this->duration_list->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::duration_list_SelectedIndexChanged);
-			// 
 			// track_list
 			// 
 			this->track_list->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom));
@@ -933,25 +915,11 @@ namespace MediaPlayerMIU
 				static_cast<System::Byte>(0)));
 			this->track_list->FormattingEnabled = true;
 			this->track_list->ItemHeight = 21;
-			this->track_list->Location = System::Drawing::Point(270, 247);
+			this->track_list->Location = System::Drawing::Point(419, 229);
 			this->track_list->Name = L"track_list";
-			this->track_list->Size = System::Drawing::Size(324, 298);
+			this->track_list->Size = System::Drawing::Size(361, 340);
 			this->track_list->TabIndex = 10;
 			this->track_list->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::track_list_SelectedIndexChanged_1);
-			// 
-			// Duration_Button
-			// 
-			this->Duration_Button->Anchor = System::Windows::Forms::AnchorStyles::Top;
-			this->Duration_Button->Font = (gcnew System::Drawing::Font(L"Harrington", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->Duration_Button->ForeColor = System::Drawing::Color::Transparent;
-			this->Duration_Button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"Duration_Button.Image")));
-			this->Duration_Button->Location = System::Drawing::Point(652, 170);
-			this->Duration_Button->Name = L"Duration_Button";
-			this->Duration_Button->Size = System::Drawing::Size(148, 47);
-			this->Duration_Button->TabIndex = 9;
-			this->Duration_Button->Text = L"Duration";
-			this->Duration_Button->UseVisualStyleBackColor = true;
 			// 
 			// Title_Button
 			// 
@@ -960,18 +928,19 @@ namespace MediaPlayerMIU
 				static_cast<System::Byte>(0)));
 			this->Title_Button->ForeColor = System::Drawing::Color::Transparent;
 			this->Title_Button->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"Title_Button.Image")));
-			this->Title_Button->Location = System::Drawing::Point(365, 170);
+			this->Title_Button->Location = System::Drawing::Point(519, 173);
 			this->Title_Button->Name = L"Title_Button";
 			this->Title_Button->Size = System::Drawing::Size(148, 47);
 			this->Title_Button->TabIndex = 8;
 			this->Title_Button->Text = L"Title";
 			this->Title_Button->UseVisualStyleBackColor = true;
+			this->Title_Button->Click += gcnew System::EventHandler(this, &MyForm::Title_Button_Click);
 			// 
 			// library_title_picture
 			// 
 			this->library_title_picture->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->library_title_picture->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"library_title_picture.Image")));
-			this->library_title_picture->Location = System::Drawing::Point(528, 45);
+			this->library_title_picture->Location = System::Drawing::Point(532, 45);
 			this->library_title_picture->Name = L"library_title_picture";
 			this->library_title_picture->Size = System::Drawing::Size(118, 62);
 			this->library_title_picture->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -1484,7 +1453,8 @@ private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e) {
 	}
 
 
-	private: System::Void speedButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void speedButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
 		speedOptions->Visible = !speedOptions->Visible;
 	}
 
@@ -1663,5 +1633,11 @@ private: System::Void screenshotButton_Click(System::Object^ sender, System::Eve
 
 		isStartButtonClicked = false;
 	}
+	private: System::Void Title_Button_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		videoList->arrangeAlphabetically(videoList, track_list);
+		videoList->populateTrackList(track_list);
+	}
+	
 };
 }
