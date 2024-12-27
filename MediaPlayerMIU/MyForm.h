@@ -393,6 +393,7 @@ namespace MediaPlayerMIU
 			// 
 			// endtimer
 			// 
+			this->endtimer->Anchor = System::Windows::Forms::AnchorStyles::Right;
 			this->endtimer->AutoSize = true;
 			this->endtimer->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -405,6 +406,7 @@ namespace MediaPlayerMIU
 			// 
 			// starttimer
 			// 
+			this->starttimer->Anchor = System::Windows::Forms::AnchorStyles::Left;
 			this->starttimer->AutoSize = true;
 			this->starttimer->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -417,6 +419,8 @@ namespace MediaPlayerMIU
 			// 
 			// progressBar1
 			// 
+			this->progressBar1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
 			this->progressBar1->Location = System::Drawing::Point(81, 25);
 			this->progressBar1->Margin = System::Windows::Forms::Padding(2);
 			this->progressBar1->Name = L"progressBar1";
@@ -442,6 +446,7 @@ namespace MediaPlayerMIU
 			// 
 			// video_name
 			// 
+			this->video_name->Anchor = System::Windows::Forms::AnchorStyles::Left;
 			this->video_name->AutoSize = true;
 			this->video_name->Font = (gcnew System::Drawing::Font(L"Segoe UI", 15, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
