@@ -1397,6 +1397,8 @@ private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e) {
 			// Hide the function
 			if (this->function_panel != nullptr)
 				this->function_panel->Visible = false;
+
+			
 		}
 
 		private: void showVideoScene()
@@ -1418,10 +1420,18 @@ private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e) {
 	{
 		// Stop any playing video
 		if (isPlaying)
-			player->Ctlcontrols->stop();
+		{
+			player->Ctlcontrols->pause();
+			
+		}
+			
 
 		// Hide Video Scene
 		hideVideoScene();
+
+		if (speedOptions->Visible) {
+			speedOptions->Hide();
+		}
 			
 		// Then switch to libary scene
 		showLibraryScene();
@@ -1432,6 +1442,9 @@ private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e) {
 
 	private: System::Void front_button_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
+		pause_button->Hide();
+		play_button->Show();
+
 		showVideoScene();
 
 		hideLibraryScene();
