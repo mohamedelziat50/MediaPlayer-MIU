@@ -70,10 +70,10 @@ public:
     // No Need For A Destructor As Managed Data Types Are Automatically Cleaned
 
     // Add a video path to the list
-    void addVideo(String^ videoPath);
+    void addVideo(String^ videoPath, System::Windows::Forms::ListBox^ track_list);
 
     // Add a video path and it's name to the list
-    void addVideo(String^ videoPath, String^ videoName);
+    void addVideo(String^ videoPath, String^ videoName, System::Windows::Forms::ListBox^ track_list);
 
     // Move to the next video
     String^ nextVideo();
@@ -116,5 +116,14 @@ public:
 
     //function to remove a video from the linked list
     void removeVideo(System::Windows::Forms::ListBox^ track_list);
+
+    //function to save the videolist in a file after every add and every remove
+    void  saveToFile(String^ filename, System::Windows::Forms::ListBox^ track_list);
+
+    //function to load the videos that were imported previously to the list
+    void loadFromFile(String^ filename, System::Windows::Forms::ListBox^ track_list);
+
+    //just for handling an error
+    bool isFileLocked();
 };
 
