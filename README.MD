@@ -1,7 +1,7 @@
 # MediaPlayer-MIU
 
 ## Overview
-MediaPlayer-MIU is a video player application developed as part of **Data Structures & Algorithms Course** by a team of 5 members. The project utilizes **Doubly Circular Linked List**, **WinForms**, and **Windows Media Player (WMP)** for managing the playlist functionality.
+MediaPlayer-MIU is a video player application developed in C++ as part of our **Data Structures & Algorithms Course** by a team of 5 members. The project utilizes **Doubly Circular Linked List**, **WinForms**, and **Windows Media Player (WMP)** for managing the playlist functionality.
 
 ---
 
@@ -27,10 +27,10 @@ MediaPlayer-MIU is a video player application developed as part of **Data Struct
 ## Screenshots
 
 ### Library Screen
-![Library Screen](https://github.com/mohamedelziat50/MediaPlayer-MIU/blob/main/screenshots/library.png)
+![library-preview](https://github.com/user-attachments/assets/23d794a6-d028-4cab-a064-6e5a2bf50154)
 
 ### Playback Screen
-![Playback Screen](https://github.com/mohamedelziat50/MediaPlayer-MIU/blob/main/screenshots/playback.png)
+![videplayer-preview1](https://github.com/user-attachments/assets/ed2c9dfb-7d5e-4e99-8bf1-fd0a4ae0ee99)
 
 ---
 
@@ -77,12 +77,12 @@ If you're new to WinForms, follow this [guide](https://www.youtube.com/watch?v=H
 ## Adding a New Form
 1. Go to `Project -> Add New Item -> UI -> Windows Form`.
 2. Fill out the Form's .cpp file
-3. If after filling out .cpp file you see only code and not the form, re-open the project 
+3. If after filling out the .cpp file you see only code and not the form, re-open the project 
 
 ---
 
 ## Common Issues and Fixes
-- Ensure the namespace matches your project name in code.
+- Ensure the namespace matches your project name in the code.
 - References -> There has to be AxInterop.WMPLib.1.0
 
 # .gitignore
