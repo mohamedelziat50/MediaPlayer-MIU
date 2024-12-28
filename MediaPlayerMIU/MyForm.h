@@ -1180,6 +1180,29 @@ private: System::Void timer_Tick(System::Object^ sender, System::EventArgs^ e) {
 		player->Ctlcontrols->currentPosition = 0; //restart the video
 		player->Ctlcontrols->play();
 	}
+	if (track_list->SelectedIndex == -1)
+	{
+		// If no valid item is selected, simply return and do nothing
+		return;
+	}
+	if (videoList == nullptr)
+	{
+		MessageBox::Show("videoList is null. Initialization may have failed.");
+		return;
+	}
+
+	if (track_list == nullptr)
+	{
+		MessageBox::Show("track_list is null. Initialization may have failed.");
+		return;
+	}
+
+	// Check if player object or other objects are null (example)
+	if (player == nullptr)
+	{
+		MessageBox::Show("Player object is null.");
+		return;
+	}
 
 	// Update the start and end timers
 	starttimer->Text = player->Ctlcontrols->currentPositionString;

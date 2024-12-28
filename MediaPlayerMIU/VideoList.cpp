@@ -406,102 +406,59 @@ bool VideoList::isFileLocked()
     }
 }
 
-void VideoList::arrangeAlphabetically(VideoList^ videoList , System::Windows::Forms::ListBox^ track_list) 
+void VideoList::arrangeAlphabetically(VideoList^ videoList, System::Windows::Forms::ListBox^ track_list)
 {
-    //this is the equivalent of List<String> videoNames = new List<String>(); -> Dynamically allocated list
-    System::Collections::Generic::List<System::String^>^ videoNames = gcnew System::Collections::Generic::List<System::String^>(); //put all names of the linked list into a list of string datatype
-    
-    Node^ current = head; //current points to the first node in the linked list
-    if (current != nullptr) { //if list is not empty
-        do {
-           
-                videoNames->Add(current->videoName);  // Add the video name to the list
-                current = current->next;  // Iterate
-          
-           
-        } while (current != head);  // Stop if we have looped back to the head
-    }
-    
-   
-    for (int i = 0; i < videoNames->Count - 1; i++) { //Alphabetical Bubble Sort 
-        for (int j = 0; j < videoNames->Count - i - 1; j++) {
-            if (System::String::Compare(videoNames[j], videoNames[j + 1]) > 0) { //this means that videoNames[j] is greater than it's next node
-                System::String^ temp = videoNames[j];
-                videoNames[j] = videoNames[j + 1];
-                videoNames[j + 1] = temp;
-            }
-        }
-    }
-
-    // Make head = null
-    current = head; //start from head
-    int index = 0;
-    if (current != nullptr) {
-        do {
-            current->videoName = videoNames[index];
-            current = current->next;  // Move to the next node.
-            index++;
-        } while (current != head);  // overwrite the linked list with the new ordered version
-    }
-    //arrange the videos into another video list then remove all videos from the original video then take the arranged list to the original list
-
-    //videoList->addVideo(videoName);
-    
-}
-
-/*
-void VideoList::arrangeNumerically(VideoList^ videoList, System::Windows::Forms::ListBox^ track_list) {
-    // Create a list of pairs of video names and their respective durations.
+    // Step 1: Collect all video names and paths into separate lists
+    System::Collections::Generic::List<System::String^>^ videoNames = gcnew System::Collections::Generic::List<System::String^>();
     System::Collections::Generic::List<System::String^>^ videoPaths = gcnew System::Collections::Generic::List<System::String^>();
-    System::Collections::Generic::List<int>^ videoDurations = gcnew System::Collections::Generic::List<int>();
 
-    AxWMPLib::AxWindowsMediaPlayer^ tempPlayer = gcnew AxWMPLib::AxWindowsMediaPlayer();
+    Node^ current = head; // Start from the head of the linked list
 
-    Node^ current = head;
-    if (current != nullptr) {
+    if (current != nullptr) { // If the list is not empty
         do {
-            videoPaths->Add(current->videoPath);
-            current = current->next;
-        } while (current != head); // Traverse the circular linked list
-    }
-    
-    if (current != nullptr) { // if list is not empty
-        for each (String ^ videoPath in videoPaths) {
-            tempPlayer->URL = videoPath;
-            videoDurations->Add(tempPlayer->currentMedia->duration);
-        }  
+            videoNames->Add(current->videoName);  // Add video name to the list
+            videoPaths->Add(current->videoPath);  // Add video path to the list
+            current = current->next;  // Move to the next node
+        } while (current != head);  // Stop when we loop back to the head
     }
 
-    for (int i = 0; i < videoPaths->Count - 1; i++) { //Alphabetical Bubble Sort 
-        for (int j = 0; j < videoPaths->Count - i - 1; j++) {
-            if (videoDurations[j] > videoDurations[j + 1]){ 
-                int tempDuration = videoDurations[j];
-                videoDurations[j] = videoDurations[j + 1];
-                videoDurations[j + 1] = tempDuration;
+    // Step 2: Sort the video names along with their corresponding paths (Bubble Sort)
+    for (int i = 0; i < videoNames->Count - 1; i++) {
+        for (int j = 0; j < videoNames->Count - i - 1; j++) {
+            if (System::String::Compare(videoNames[j], videoNames[j + 1]) > 0) { // Compare names alphabetically
+                // Swap video names
+                System::String^ tempName = videoNames[j];
+                videoNames[j] = videoNames[j + 1];
+                videoNames[j + 1] = tempName;
 
-                // Swap corresponding video paths
-                String^ tempPath = videoPaths[j];
+                // Swap corresponding paths
+                System::String^ tempPath = videoPaths[j];
                 videoPaths[j] = videoPaths[j + 1];
                 videoPaths[j + 1] = tempPath;
             }
         }
     }
 
-   // if (videoDurations->Count > 0) {
-     //   quickSort(videoPaths, videoDurations, 0, videoDurations->Count - 1); //Arrage using quickSort
-   // }
-
-    current = head; //start from head
+    // Step 3: Update the linked list with the sorted names and paths
+    current = head; // Start from the head
     int index = 0;
+
     if (current != nullptr) {
         do {
+            // Update the video name and path for each node
+            current->videoName = videoNames[index];
             current->videoPath = videoPaths[index];
-            current = current->next;  // Move to the next node.
+            current = current->next;  // Move to the next node
             index++;
-        } while (current != head);  // overwrite the linked list with the new ordered version
+        } while (current != head);  // Loop back to the head
     }
+
+    // Step 4: Update the GUI track list
+    videoList->populateTrackList(track_list);
+    saveToFile("data.dat", track_list);
 }
-*/
+
+
 
 int VideoList::split(System::Collections::Generic::List<System::String^>^ videoPaths,
     System::Collections::Generic::List<int>^ videoDurations,
@@ -560,41 +517,4 @@ void VideoList::quickSort(System::Collections::Generic::List<System::String^>^ v
     }
 }
 
-/*
-Bubble Sort for Duration (Just incase merge sort doesnt work)
 
-for (int i = 0; i < videoListWithDuration->Count - 1; i++) {
-        for (int j = 0; j < videoListWithDuration->Count - i - 1; j++) {
-            // Compare durations, not names
-            if (videoListWithDuration[j]->Item2 > videoListWithDuration[j + 1]->Item2) {
-                // Swap the entire tuple (name and duration) if out of order
-                System::Tuple<System::String^, int>^ temp = videoListWithDuration[j];
-                videoListWithDuration[j] = videoListWithDuration[j + 1];
-                videoListWithDuration[j + 1] = temp;
-            }
-        }
-    }
-*/
-
-/*void VideoList::removeAllVideos()
-{
-    // If the list is already empty, do nothing
-    if (isEmpty())
-        return;
-
-    // Traverse the list and delete each node
-    Node^ temp = head;
-
-    do
-    {
-        Node^ toDelete = temp; // Keep track of the node to delete
-        temp = temp->next;     // Move to the next node
-        delete toDelete;       // Delete the current node
-    } while (temp != head);    // Stop when we circle back to the head
-
-    // Reset head, tail, and current pointers to null
-    head = nullptr;
-    tail = nullptr;
-    current = nullptr;
-}
-*/
