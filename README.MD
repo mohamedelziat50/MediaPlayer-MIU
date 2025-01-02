@@ -37,6 +37,15 @@ MediaPlayer-MIU is a video player application developed in C++ as part of our **
 
 ---
 
+## Video Preview
+
+ **Application Overview:**
+
+
+https://github.com/user-attachments/assets/9aa652ac-d4bd-4202-8dfb-2de9ad3cc54a
+
+---
+
 ## Project Setup
 
 ### Prerequisites
